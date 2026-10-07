@@ -1,0 +1,320 @@
+[
+  {
+    "slug": "quechers",
+    "group": "prep",
+    "depth": "full",
+    "priority": 1,
+    "icon": "flask-conical",
+    "name": "QuEChERS",
+    "nav": "Extraction salts and tubes for multi-residue methods",
+    "h1": "QuEChERS extraction salts and tubes",
+    "metaTitle": "QuEChERS Extraction Salts and Tubes in India | Acurris Analytical",
+    "metaDesc": "Original, AOAC 2007.01 and EN 15662 QuEChERS salt formulations in pouches or tubes, stocked in India. Request a quote or an evaluation pack.",
+    "summary": "QuEChERS salts drive the extraction and partitioning step in multi-residue pesticide and contaminant methods. We supply the three standard formulations in pre-weighed pouches and centrifuge tubes, so your analysts stop weighing salts by hand.",
+    "typesHeading": "Formulations we supply",
+    "types": [
+      { "name": "Original (unbuffered)", "detail": "4 g magnesium sulfate, 1 g sodium chloride, for a 10 g sample", "use": "General fruit, vegetable and cereal work where pH-sensitive analytes are not a concern" },
+      { "name": "AOAC 2007.01 (acetate buffered)", "detail": "6 g magnesium sulfate, 1.5 g sodium acetate, for a 15 g sample", "use": "Labs running the AOAC official method, and pH-sensitive pesticides" },
+      { "name": "EN 15662 (citrate buffered)", "detail": "4 g magnesium sulfate, 1 g sodium chloride, 1 g trisodium citrate dihydrate, 0.5 g disodium hydrogen citrate sesquihydrate, for a 10 g sample", "use": "Labs accredited to the European standard method" },
+      { "name": "Pouches or tubes", "detail": "Pre-weighed pouches to add to your own tubes, or 50 mL centrifuge tubes with salts already inside", "use": "Pouches suit labs with existing tube stock. Pre-filled tubes save a transfer step" }
+    ],
+    "methodFit": [
+      "Start from the method your lab is accredited for. If your NABL scope lists AOAC 2007.01, use acetate salts. If it lists EN 15662, use citrate salts. Switching formulation changes recoveries for some analytes and usually means revalidating.",
+      "Dry commodities such as cereals, pulses, spices and tea need water added before extraction, because the salts need an aqueous phase to partition against. Most labs add water to bring a reduced sample weight up to around 80 percent water content, then follow the method as written.",
+      "Extraction is half the job. Raw extracts from fatty, pigmented or sugary matrices carry co-extractives that foul GC liners and suppress LC-MS signal, so most methods follow QuEChERS with a dSPE cleanup step."
+    ],
+    "faq": [
+      { "q": "Which QuEChERS formulation should I use?", "a": "Use the one your validated method specifies. If you are setting up a new method, the buffered versions give more consistent recoveries for pH-sensitive pesticides. Tell us your analyte list and matrix and we will suggest a starting point." },
+      { "q": "Should I buy pouches or pre-filled tubes?", "a": "Pre-filled tubes remove one handling step and suit high sample volumes. Pouches cost less per test if you already stock 50 mL centrifuge tubes." },
+      { "q": "Can you match the salts I use now?", "a": "Send us the formulation and fill weights from your current method or supplier. We will confirm whether we can match them before you order." },
+      { "q": "Do you supply the cleanup step too?", "a": "Yes. Our dSPE tubes pair with each QuEChERS formulation. See the dSPE page or ask for both in one quote." },
+      { "q": "Can I test before I commit to a volume order?", "a": "Yes. Request a paid evaluation pack after you send a quote request. The pack cost is credited against your first order." }
+    ],
+    "related": ["dspe", "spe", "filtration"],
+    "articles": ["choosing-quechers-salts-and-dspe-cleanup"],
+    "spec_pdf": ""
+  },
+  {
+    "slug": "mycotoxins",
+    "group": "kits",
+    "depth": "full",
+    "priority": 2,
+    "icon": "wheat",
+    "name": "Mycotoxins",
+    "nav": "Aflatoxins, ochratoxin A, DON, zearalenone, fumonisins",
+    "h1": "Mycotoxin rapid test kits",
+    "metaTitle": "Mycotoxin Rapid Test Kits in India: Aflatoxin, DON, OTA | Acurris Analytical",
+    "metaDesc": "Rapid screening kits for aflatoxin B1, total aflatoxins, ochratoxin A, DON, zearalenone and fumonisins in grain, oilseeds and feed. Stocked in India.",
+    "summary": "Rapid mycotoxin kits let you screen grain, oilseeds and feed ingredients at intake, before a contaminated lot enters storage or production. We supply kits for the five toxin groups that matter most in Indian commodities.",
+    "typesHeading": "Toxins we cover",
+    "types": [
+      { "name": "Aflatoxin B1 and total aflatoxins", "detail": "Rapid screening kit", "use": "Maize, groundnut, rice, spices, oilseed cake, compound feed" },
+      { "name": "Ochratoxin A", "detail": "Rapid screening kit", "use": "Cereals, coffee, spices, dried fruit" },
+      { "name": "Deoxynivalenol (DON)", "detail": "Rapid screening kit", "use": "Wheat, maize, barley, feed" },
+      { "name": "Zearalenone", "detail": "Rapid screening kit", "use": "Maize, wheat, feed" },
+      { "name": "Fumonisins", "detail": "Rapid screening kit", "use": "Maize and maize products, feed" }
+    ],
+    "typesNote": "Kit format (strip or microplate), range and extraction solvent vary by toxin. Your quote states them for each kit.",
+    "methodFit": [
+      "Sampling causes most of the error in mycotoxin results. Toxins cluster in a few kernels, so a small grab sample from one bag can miss a contaminated lot or condemn a clean one. Take many small increments across the lot, combine them, grind the whole aggregate, and test a subsample of the ground material.",
+      "Decide whether you need a yes or no answer at a limit, or a number. Qualitative kits suit intake decisions against a single acceptance limit. Semi-quantitative and quantitative kits suit buyers who grade lots or price by contamination level.",
+      "Rapid kits screen. They do not replace confirmatory methods such as HPLC with fluorescence detection or LC-MS/MS. Send presumptive positives and results near your limit to a confirming lab, and keep both results on file."
+    ],
+    "faq": [
+      { "q": "Do rapid mycotoxin kits replace HPLC?", "a": "No. Use rapid kits to screen many lots fast and cheaply, and confirm positives or borderline results by HPLC or LC-MS/MS." },
+      { "q": "How much sample should I collect?", "a": "Collect as many increments as practical across the whole lot and grind the full aggregate before you subsample. Our technical team can help you set a sampling plan for your commodity and lot size." },
+      { "q": "Can I test several toxins from one extract?", "a": "Some kit combinations share an extraction solvent and some do not. Tell us which toxins you test together and we will confirm in the quote." },
+      { "q": "Do the kits work for spices and oilcakes?", "a": "Spices, oilcakes and compound feed carry pigments and fats that can interfere with rapid tests. Tell us your matrix and we will confirm suitability before you order." },
+      { "q": "Can I test before I commit to a volume order?", "a": "Yes. Request a paid evaluation pack after you send a quote request. The pack cost is credited against your first order." }
+    ],
+    "related": ["antibiotic-residues", "quechers", "spe"],
+    "articles": ["mycotoxin-testing-in-feed-sampling", "screening-raw-milk-at-collection"],
+    "spec_pdf": ""
+  },
+  {
+    "slug": "antibiotic-residues",
+    "group": "kits",
+    "depth": "full",
+    "priority": 3,
+    "icon": "test-tube",
+    "name": "Antibiotic residues",
+    "nav": "Beta-lactams, tetracyclines, sulfonamides and more",
+    "h1": "Antibiotic and veterinary drug residue test kits",
+    "metaTitle": "Antibiotic Residue Test Kits for Milk in India | Acurris Analytical",
+    "metaDesc": "Rapid screening kits for beta-lactam, tetracycline, sulfonamide, fluoroquinolone and macrolide residues in milk, honey, meat and shrimp. Stocked in India.",
+    "summary": "Antibiotic residue kits give a fast accept or reject decision on raw milk at collection and on other animal-origin foods before processing or export. We supply kits across the main veterinary drug classes.",
+    "typesHeading": "Drug classes we cover",
+    "types": [
+      { "name": "Beta-lactams", "detail": "Penicillins and cephalosporins", "use": "Raw and processed milk" },
+      { "name": "Tetracyclines", "detail": "Rapid screening kit", "use": "Milk, honey, meat, shrimp" },
+      { "name": "Sulfonamides", "detail": "Rapid screening kit", "use": "Milk, honey, meat" },
+      { "name": "Fluoroquinolones", "detail": "Rapid screening kit", "use": "Milk, shrimp, poultry" },
+      { "name": "Macrolides", "detail": "Rapid screening kit", "use": "Milk, honey, meat" },
+      { "name": "Other veterinary drugs", "detail": "On request", "use": "Tell us the analyte and matrix" }
+    ],
+    "typesNote": "Single-class and combined tests are available for some classes. Your quote states format, detection levels and read time for each kit.",
+    "methodFit": [
+      "At milk collection, speed and simplicity decide whether a test gets used on every tanker. Combined beta-lactam and tetracycline tests cover the drugs most often found in milk in one run, and most collection points start there.",
+      "Incubation temperature and read time matter more than operators expect. Run tests in a calibrated incubator, read inside the stated window, and keep samples cold until testing. Most false results trace back to one of these three steps.",
+      "Know which limits your buyer applies. Domestic supply follows FSSAI limits, and export buyers often apply their own. Pick kits whose detection levels sit at or below the strictest limit you face, and confirm positives by LC-MS/MS."
+    ],
+    "faq": [
+      { "q": "Which test should a milk collection point start with?", "a": "Most start with a combined beta-lactam and tetracycline test, then add other classes based on local veterinary drug use and buyer requirements." },
+      { "q": "Do I need an incubator?", "a": "Most receptor and lateral flow tests for milk need a dry-block incubator at a fixed temperature. Tell us what equipment you have and we will match kits to it." },
+      { "q": "Can these kits be used for shrimp or honey?", "a": "Some drug classes have kits for shrimp, honey and meat. These matrices need different sample preparation from milk. Tell us your matrix and we will confirm." },
+      { "q": "What happens when a sample tests positive?", "a": "Treat it as presumptive. Hold the lot, retest, and send the sample to a lab for confirmation by LC-MS/MS before you reject or report it." },
+      { "q": "Can I test before I commit to a volume order?", "a": "Yes. Request a paid evaluation pack after you send a quote request. The pack cost is credited against your first order." }
+    ],
+    "related": ["food-adulteration", "mycotoxins", "sample-handling"],
+    "articles": ["screening-raw-milk-at-collection"],
+    "spec_pdf": ""
+  },
+  {
+    "slug": "food-adulteration",
+    "group": "kits",
+    "depth": "full",
+    "priority": 4,
+    "icon": "milk",
+    "name": "Food adulteration",
+    "nav": "Milk adulterants, synthetic milk, non-permitted colors",
+    "h1": "Milk and food adulteration test kits",
+    "metaTitle": "Milk Adulteration Test Kits in India: Urea, Starch, Detergent | Acurris Analytical",
+    "metaDesc": "Rapid kits to screen milk for synthetic milk, urea, starch and detergent, and foods for non-permitted colors. For collection centers, dairy plants and labs.",
+    "summary": "Adulteration kits let collection staff and plant QA screen milk and other foods on the spot, with color-change reads and no instruments. We supply kits for the adulterants most often found in Indian milk and foods.",
+    "typesHeading": "Adulterants we cover",
+    "types": [
+      { "name": "Synthetic milk", "detail": "Rapid screening kit", "use": "Raw milk at collection and intake" },
+      { "name": "Urea", "detail": "Rapid screening kit", "use": "Raw milk" },
+      { "name": "Starch", "detail": "Rapid screening kit", "use": "Milk and milk products" },
+      { "name": "Detergent", "detail": "Rapid screening kit", "use": "Raw milk" },
+      { "name": "Non-permitted colors", "detail": "Rapid screening kit", "use": "Spices, sweets, pulses" },
+      { "name": "Other adulterants", "detail": "On request", "use": "Tell us the adulterant and matrix" }
+    ],
+    "typesNote": "Your quote states the read method, detection level and tests per kit for each item.",
+    "methodFit": [
+      "Most adulteration tests read as a color change. Read every test under the same light, against the same reference card, and inside the stated time. Daylight through a window gives different reads in the morning and evening.",
+      "Run a panel, not a single test. Adulterated milk usually carries more than one additive, because each one masks a different quality check. A panel at intake catches what one test misses.",
+      "Record every result against the supplier, date and quantity. Your records turn a one-off rejection into a pattern you can act on with the supplier."
+    ],
+    "faq": [
+      { "q": "Who can run these tests?", "a": "Collection center staff can run them after a short demonstration. No lab instruments are needed for most tests. Our technical team can train your staff by video call." },
+      { "q": "How many tests should we run at intake?", "a": "Most dairies run a panel covering urea, starch, detergent and synthetic milk at intake, then add tests based on what they find locally." },
+      { "q": "Do positive results need confirmation?", "a": "Yes. Treat a positive as presumptive, hold the milk, and confirm in a lab before you reject or report it." },
+      { "q": "Do you have kits for spices and sweets?", "a": "Yes, for non-permitted colors. Tell us the product and the colors you are checking for." },
+      { "q": "Can I test before I commit to a volume order?", "a": "Yes. Request a paid evaluation pack after you send a quote request. The pack cost is credited against your first order." }
+    ],
+    "related": ["antibiotic-residues", "mycotoxins", "sample-handling"],
+    "articles": ["screening-raw-milk-at-collection"],
+    "spec_pdf": ""
+  },
+  {
+    "slug": "pesticide-residues",
+    "group": "kits",
+    "depth": "short",
+    "priority": 5,
+    "icon": "sprout",
+    "name": "Pesticide residues",
+    "nav": "Multi-residue and targeted screening",
+    "h1": "Pesticide residue rapid test kits",
+    "metaTitle": "Pesticide Residue Rapid Test Kits in India | Acurris Analytical",
+    "metaDesc": "Rapid multi-residue and targeted pesticide screening kits for fruits, vegetables, cereals and tea. Stocked in India, with technical support.",
+    "summary": "Rapid pesticide kits screen produce and grain before it reaches the lab queue, so you send only suspect lots for full multi-residue analysis.",
+    "typesHeading": "Screening options",
+    "types": [
+      { "name": "Multi-residue screening", "detail": "Rapid screening kit", "use": "Fruits, vegetables, cereals, tea" },
+      { "name": "Targeted screening", "detail": "By pesticide group, on request", "use": "Tell us the pesticides and matrix" }
+    ],
+    "typesNote": "For quantitative results against MRLs, labs use QuEChERS extraction with LC-MS/MS or GC-MS/MS. See our QuEChERS and dSPE pages.",
+    "related": ["quechers", "dspe", "filtration"],
+    "articles": ["choosing-quechers-salts-and-dspe-cleanup"],
+    "spec_pdf": ""
+  },
+  {
+    "slug": "foodborne-pathogens",
+    "group": "kits",
+    "depth": "short",
+    "priority": 6,
+    "icon": "microscope",
+    "name": "Foodborne pathogens",
+    "nav": "Salmonella, E. coli, Listeria, S. aureus",
+    "h1": "Foodborne pathogen rapid test kits",
+    "metaTitle": "Foodborne Pathogen Rapid Test Kits in India | Acurris Analytical",
+    "metaDesc": "Rapid kits for Salmonella, E. coli, Listeria and Staphylococcus aureus in food and environmental samples. Stocked in India.",
+    "summary": "Rapid pathogen kits shorten the time from sample to result after enrichment, so you can release product or act on a positive sooner.",
+    "typesHeading": "Organisms we cover",
+    "types": [
+      { "name": "Salmonella", "detail": "Rapid test kit", "use": "Poultry, eggs, spices, feed, dairy" },
+      { "name": "E. coli", "detail": "Rapid test kit", "use": "Dairy, meat, produce, water" },
+      { "name": "Listeria", "detail": "Rapid test kit", "use": "Dairy, ready-to-eat foods, environmental swabs" },
+      { "name": "Staphylococcus aureus", "detail": "Rapid test kit", "use": "Dairy, meat, prepared foods" },
+      { "name": "Other organisms", "detail": "On request", "use": "Tell us the organism and matrix" }
+    ],
+    "typesNote": "Most rapid pathogen tests need an enrichment step first. Your quote states enrichment and total time to result for each kit.",
+    "related": ["sample-handling", "filtration", "antibiotic-residues"],
+    "articles": [],
+    "spec_pdf": ""
+  },
+  {
+    "slug": "food-allergens",
+    "group": "kits",
+    "depth": "short",
+    "priority": 7,
+    "icon": "nut",
+    "name": "Food allergens",
+    "nav": "Peanut, gluten, milk, soy, egg",
+    "h1": "Food allergen rapid test kits",
+    "metaTitle": "Food Allergen Rapid Test Kits in India: Peanut, Gluten | Acurris Analytical",
+    "metaDesc": "Rapid kits to detect peanut, gluten, milk, soy and egg in ingredients and finished foods. Stocked in India, with technical support.",
+    "summary": "Allergen kits help manufacturers check ingredients and finished goods against their labels, and confirm that changeovers between products leave no carryover.",
+    "typesHeading": "Allergens we cover",
+    "types": [
+      { "name": "Peanut", "detail": "Rapid test kit", "use": "Ingredients, finished products" },
+      { "name": "Gluten", "detail": "Rapid test kit", "use": "Ingredients, finished products" },
+      { "name": "Milk", "detail": "Rapid test kit", "use": "Ingredients, finished products" },
+      { "name": "Soy", "detail": "Rapid test kit", "use": "Ingredients, finished products" },
+      { "name": "Egg", "detail": "Rapid test kit", "use": "Ingredients, finished products" },
+      { "name": "Other allergens", "detail": "On request", "use": "Tell us the allergen and matrix" }
+    ],
+    "typesNote": "Your quote states the format, detection level and tests per kit for each allergen.",
+    "related": ["sample-handling", "foodborne-pathogens", "food-adulteration"],
+    "articles": [],
+    "spec_pdf": ""
+  },
+  {
+    "slug": "dspe",
+    "group": "prep",
+    "depth": "short",
+    "priority": 8,
+    "icon": "test-tubes",
+    "name": "dSPE",
+    "nav": "Cleanup sorbents and tubes after QuEChERS",
+    "h1": "dSPE cleanup tubes and sorbents",
+    "metaTitle": "dSPE Cleanup Tubes: PSA, C18, GCB | Acurris Analytical",
+    "metaDesc": "Dispersive SPE cleanup tubes with PSA, C18 and GCB sorbents for QuEChERS extracts. Matched to fatty, pigmented and general matrices.",
+    "summary": "dSPE tubes clean QuEChERS extracts before injection. Pick the sorbent blend by what your matrix carries: sugars and acids, fat, or pigment.",
+    "typesHeading": "Sorbent blends",
+    "types": [
+      { "name": "PSA with magnesium sulfate", "detail": "Removes sugars, fatty acids and organic acids, plus residual water", "use": "Most fruits and vegetables" },
+      { "name": "PSA, C18 and magnesium sulfate", "detail": "Adds C18 to remove lipids and nonpolar co-extractives", "use": "Fatty matrices such as oilseeds, nuts, milk, meat" },
+      { "name": "PSA, GCB and magnesium sulfate", "detail": "Adds graphitized carbon to remove chlorophyll and carotenoids", "use": "Pigmented matrices such as spinach and tea. GCB can retain planar pesticides, so check recoveries" },
+      { "name": "Other blends", "detail": "On request", "use": "Tell us your matrix and analyte list" }
+    ],
+    "typesNote": "Tubes come in 2 mL and 15 mL sizes for different extract volumes. Your quote states sorbent weights per tube.",
+    "related": ["quechers", "spe", "filtration"],
+    "articles": ["choosing-quechers-salts-and-dspe-cleanup"],
+    "spec_pdf": ""
+  },
+  {
+    "slug": "spe",
+    "group": "prep",
+    "depth": "short",
+    "priority": 9,
+    "icon": "pipette",
+    "name": "SPE",
+    "nav": "Cartridges for cleanup and concentration",
+    "h1": "SPE cartridges",
+    "metaTitle": "SPE Cartridges for Food Testing Labs in India | Acurris Analytical",
+    "metaDesc": "Solid phase extraction cartridges in reversed-phase, ion-exchange and polymeric sorbents for cleanup and concentration in food analysis.",
+    "summary": "SPE cartridges clean up and concentrate extracts when a method needs more selectivity than dSPE gives, or a lower detection limit.",
+    "typesHeading": "Cartridge types",
+    "types": [
+      { "name": "Reversed-phase (C18)", "detail": "Retains nonpolar analytes from aqueous samples", "use": "Pesticides, mycotoxins, veterinary drugs" },
+      { "name": "Ion-exchange", "detail": "Retains charged analytes by pH", "use": "Acidic or basic drugs and contaminants" },
+      { "name": "Polymeric", "detail": "Wider polarity range, tolerates drying", "use": "Multi-class residue methods" },
+      { "name": "Other sorbents and sizes", "detail": "On request", "use": "Send your method's cartridge specification" }
+    ],
+    "typesNote": "Your quote states sorbent mass, cartridge volume and pack size.",
+    "related": ["dspe", "quechers", "filtration"],
+    "articles": [],
+    "spec_pdf": ""
+  },
+  {
+    "slug": "filtration",
+    "group": "prep",
+    "depth": "short",
+    "priority": 10,
+    "icon": "filter",
+    "name": "Filtration",
+    "nav": "Syringe filters and membranes",
+    "h1": "Syringe filters and membrane filters",
+    "metaTitle": "Syringe Filters and Membranes for HPLC and LC-MS | Acurris Analytical",
+    "metaDesc": "PTFE, nylon, PVDF and PES syringe filters and membranes in 0.22 and 0.45 micron pore sizes for HPLC and LC-MS sample preparation.",
+    "summary": "Filtering extracts before injection protects columns and autosampler needles from particles. Pick the membrane by solvent compatibility and analyte binding.",
+    "typesHeading": "Membranes we supply",
+    "types": [
+      { "name": "PTFE", "detail": "0.22 and 0.45 micron", "use": "Organic solvents such as acetonitrile extracts" },
+      { "name": "Nylon", "detail": "0.22 and 0.45 micron", "use": "Aqueous and mixed solvents. Can bind some proteins and analytes" },
+      { "name": "PVDF", "detail": "0.22 and 0.45 micron", "use": "Low binding, aqueous and organic samples" },
+      { "name": "PES", "detail": "0.22 and 0.45 micron", "use": "Aqueous samples, low protein binding" },
+      { "name": "Membrane discs", "detail": "On request", "use": "Mobile phase and solvent filtration" }
+    ],
+    "typesNote": "Your quote states diameter, housing material and pack size.",
+    "related": ["sample-handling", "quechers", "dspe"],
+    "articles": [],
+    "spec_pdf": ""
+  },
+  {
+    "slug": "sample-handling",
+    "group": "prep",
+    "depth": "short",
+    "priority": 11,
+    "icon": "beaker",
+    "name": "Sample handling",
+    "nav": "Vials, centrifuge tubes and lab consumables",
+    "h1": "Vials, tubes and sample handling consumables",
+    "metaTitle": "Autosampler Vials and Centrifuge Tubes in India | Acurris Analytical",
+    "metaDesc": "Autosampler vials, caps and septa, and 15 mL and 50 mL centrifuge tubes for food testing labs. Stocked in India.",
+    "summary": "The consumables every extraction and injection runs through. Order them with your kits and prep products in one quote.",
+    "typesHeading": "Items we supply",
+    "types": [
+      { "name": "Autosampler vials", "detail": "2 mL, clear and amber", "use": "HPLC, LC-MS and GC autosamplers" },
+      { "name": "Caps and septa", "detail": "Screw and crimp, PTFE/silicone septa", "use": "Matched to vials" },
+      { "name": "Centrifuge tubes", "detail": "15 mL and 50 mL", "use": "QuEChERS extraction and cleanup" },
+      { "name": "Other consumables", "detail": "On request", "use": "Send your list" }
+    ],
+    "typesNote": "Your quote states pack sizes and compatibility with your instruments.",
+    "related": ["filtration", "quechers", "dspe"],
+    "articles": [],
+    "spec_pdf": ""
+  }
+]

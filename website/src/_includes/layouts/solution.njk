@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+pageType: solution
+---
+<section class="page-hero">
+  <div class="container">
+    {% include "partials/breadcrumbs.njk" %}
+    <div class="page-hero-icon">{% icon heroIcon %}</div>
+    <span class="eyebrow" style="margin-top:var(--space-md)">Solutions</span>
+    <h1>{{ heading }}</h1>
+    <p class="lead">{{ intro }}</p>
+    <div class="btn-row"><a class="btn btn--primary" href="/request-quote/">Request a quote</a><a class="btn btn--secondary" href="/evaluation-pack/">Evaluation pack</a></div>
+  </div>
+</section>
+<section class="section">
+  <div class="container split split--wide-left">
+    <div class="prose">{{ content | safe }}</div>
+    <aside class="callout">{% icon "message-circle" %}<div><h2 class="h3" style="font-size:1.0625rem">Talk to our technical team</h2><p>Tell us what you test, the matrix and your volume. We reply within {{ site.supportHours }} hours.</p><p><a href="/request-quote/">Ask a question</a></p></div></aside>
+  </div>
+</section>
+<section class="section section--card">
+  <div class="container">
+    <div class="section-head"><h2>Products for {{ shortName }}</h2></div>
+    <div class="grid grid--3">
+      {%- for slug in recommended %}{% set c = categories | findBySlug(slug) %}{% include "partials/card.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="section section--muted">
+  <div class="container">
+    <div class="section-head"><h2>How buying works</h2></div>
+    <ol class="steps">
+      <li><h3>Send your requirement</h3><p>Analyte, matrix and rough volume. Four fields to start.</p></li>
+      <li><h3>Get a quote within {{ site.supportHours }} hours</h3><p>Pricing, lead time and a spec sheet, with a recommendation.</p></li>
+      <li><h3>Evaluate, then order</h3><p>Run an evaluation pack on your own samples. Its cost comes off your first order.</p></li>
+    </ol>
+  </div>
+</section>
+{% include "partials/cta-band.njk" %}

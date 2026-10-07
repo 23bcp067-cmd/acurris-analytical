@@ -1,0 +1,195 @@
+---
+layout: layouts/base.njk
+title: Solutions
+metaTitle: "Analytical Solutions for Food, Dairy and Feed Testing | Acurris Analytical"
+description: "Analytical solutions for food testing labs, dairy processors and feed and poultry operations in India. Rapid screening kits, sample prep and technical support."
+pageType: solutions
+---
+
+{%- set solutionPages = [
+  {
+    slug: "food-testing-labs",
+    title: "Food testing labs",
+    intro: "Kits and sample preparation for NABL-accredited and private food testing labs, matched to the methods on your scope.",
+    image: "cat-quechers",
+    products: ["QuEChERS","dSPE","SPE","Filtration","Mycotoxins"],
+    url: "/solutions/food-testing-labs/"
+  },
+  {
+    slug: "dairy",
+    title: "Dairy processors",
+    intro: "Test panels your collection staff can run on every tanker and every can, without a lab.",
+    image: "cat-antibiotic-residues",
+    products: ["Antibiotic residues","Food adulteration","Mycotoxins","Sample handling"],
+    url: "/solutions/dairy/"
+  },
+  {
+    slug: "feed-and-poultry",
+    title: "Feed and poultry",
+    intro: "Rapid kits and sampling guidance for feed mills and poultry integrators testing maize, DDGS, oilcake and finished feed.",
+    image: "cat-mycotoxins",
+    products: ["Mycotoxins","SPE","Sample handling"],
+    url: "/solutions/feed-and-poultry/"
+  }
+] %}
+
+<section class="solutions-hero science-surface">
+  {% set scienceFieldVariant = "science-field--solutions" %}
+  {% include "partials/science-field.njk" %}
+  <div class="wrap solutions-hero-grid">
+    <div class="solutions-hero-copy">
+      <p class="eyebrow">ANALYTICAL SOLUTIONS</p>
+      <h1>Solutions Built Around Real Analytical Challenges</h1>
+      <p class="lead">Acurris helps laboratories and analytical workflows select the right products for real-world applications.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="#solutions-discovery">Explore Solutions</a>
+        <a class="btn btn--secondary" href="/request-quote/">Request a Quote</a>
+      </div>
+
+      <div class="trust-strip" aria-label="Solution support highlights">
+        <div class="trust-item">
+          <strong>Method-fit selection</strong>
+          <span>Matched to the way your lab actually works</span>
+        </div>
+        <div class="trust-item">
+          <strong>Fast technical reply</strong>
+          <span>We answer within {{ site.supportHours }} hours</span>
+        </div>
+        <div class="trust-item">
+          <strong>Evaluation packs</strong>
+          <span>Test before you scale up</span>
+        </div>
+        <div class="trust-item">
+          <strong>Practical guidance</strong>
+          <span>Sampling and setup support built in</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="solutions-hero-visual">
+      <div class="solutions-hero-stage">
+        <img src="/assets/img/products/cat-quechers-l.webp" srcset="/assets/img/products/cat-quechers-m.webp 600w, /assets/img/products/cat-quechers-l.webp 1200w" sizes="(min-width: 1024px) 46vw, 100vw" width="1200" height="900" alt="Analytical sample preparation and testing workflow" fetchpriority="high">
+      </div>
+      <div class="solutions-hero-panel">
+        <p class="kicker">Featured workflow</p>
+        <strong>Food testing labs</strong>
+        <p>One supplier for your whole analyte panel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="solutions-discovery" aria-labelledby="solutions-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Application areas</p>
+        <h2 id="solutions-title">Solutions for real-world analytical workflows</h2>
+      </div>
+    </div>
+
+    <div class="solutions-grid">
+      {% for solution in solutionPages %}
+      <article class="solutions-card">
+        <a class="solutions-card-media" href="{{ solution.url }}" aria-label="Explore {{ solution.title }}">
+          <img src="/assets/img/products/{{ solution.image }}-m.webp" width="800" height="620" alt="{{ solution.title }} solution" loading="lazy">
+        </a>
+        <div class="solutions-card-body">
+          <p class="eyebrow">Solution</p>
+          <h3><a href="{{ solution.url }}">{{ solution.title }}</a></h3>
+          <p>{{ solution.intro }}</p>
+          <ul class="solutions-card-list">
+            {% for item in solution.products %}<li>{{ item }}</li>{% endfor %}
+          </ul>
+          <a class="arrow-link" href="{{ solution.url }}">Explore solution {% icon "arrow-right" %}</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section solutions-application-section" aria-labelledby="challenge-title">
+  <div class="wrap">
+    <div class="solutions-application-header">
+      <p class="eyebrow">Challenge to solution</p>
+      <h2 id="challenge-title">From analytical challenge to the right product.</h2>
+    </div>
+
+    <div class="solutions-application-grid">
+      <article class="solutions-focus solutions-focus--large">
+        <div class="solutions-focus-kicker mono">Challenge</div>
+        <h3>Food testing labs need one reliable supply chain across many analytes.</h3>
+        <p>As food testing capacity expands, labs need consumables and kits that match their validated methods without extra import delays or multiple suppliers.</p>
+        <a class="arrow-link" href="/solutions/food-testing-labs/">Explore food testing labs {% icon "arrow-right" %}</a>
+      </article>
+
+      <article class="solutions-focus">
+        <div class="solutions-focus-kicker mono">Solution</div>
+        <h3>Dairy processors</h3>
+        <p>Rapid intake screening for antibiotic residues, adulteration and mycotoxin risks before pooled milk moves downstream.</p>
+        <a class="arrow-link" href="/solutions/dairy/">Explore dairy {% icon "arrow-right" %}</a>
+      </article>
+
+      <article class="solutions-focus">
+        <div class="solutions-focus-kicker mono">Products</div>
+        <h3>Relevant categories</h3>
+        <ul class="solutions-focus-list">
+          <li><a href="/products/quechers/">QuEChERS</a></li>
+          <li><a href="/products/dspe/">dSPE</a></li>
+          <li><a href="/products/filtration/">Filtration</a></li>
+          <li><a href="/products/mycotoxins/">Mycotoxins</a></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="support-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Why Acurris</p>
+        <h2 id="support-title">Practical support for the way your team works</h2>
+      </div>
+    </div>
+
+    <div class="solutions-support-grid">
+      <div class="solutions-support-item">
+        <span class="mono">01</span>
+        <h3>Method-first recommendations</h3>
+        <p>We help match products to your laboratory scope, matrix and workflow.</p>
+      </div>
+      <div class="solutions-support-item">
+        <span class="mono">02</span>
+        <h3>Technical response</h3>
+        <p>Questions are answered within {{ site.supportHours }} hours, with practical guidance for sample handling and setup.</p>
+      </div>
+      <div class="solutions-support-item">
+        <span class="mono">03</span>
+        <h3>Evaluation packs</h3>
+        <p>Use a paid evaluation pack on your own samples before committing to a larger order.</p>
+      </div>
+      <div class="solutions-support-item">
+        <span class="mono">04</span>
+        <h3>Sample prep guidance</h3>
+        <p>From extraction and cleanup to collection-point screening, we support the full workflow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section solutions-final-cta science-surface" aria-labelledby="solutions-cta-title">
+  {% set scienceFieldVariant = "science-field--dark" %}
+  {% include "partials/science-field.njk" %}
+  <div class="wrap solutions-final-cta-content">
+    <div>
+      <p class="eyebrow">Need help finding the right analytical solution?</p>
+      <h2 id="solutions-cta-title">Need help finding the right analytical solution?</h2>
+    </div>
+    <div class="btn-row solutions-final-cta-actions">
+      <a class="btn btn--primary" href="/products/">Explore Products</a>
+      <a class="btn btn--secondary" href="/request-quote/">Request a Quote</a>
+    </div>
+  </div>
+</section>

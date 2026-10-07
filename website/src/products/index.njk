@@ -1,0 +1,27 @@
+---
+layout: layouts/page.njk
+title: Products
+metaTitle: "Rapid Food Safety Test Kits and Sample Prep Products | Acurris Analytical"
+description: "All 11 product categories: rapid test kits for mycotoxins, residues, adulterants, pathogens and allergens, plus QuEChERS, dSPE, SPE, filtration and sample handling."
+eyebrow: Products
+heading: Rapid test kits and sample preparation
+intro: "Eleven categories, sold under the Acurris Analytical name and supported by our technical team. Prices and formats are confirmed in your quote."
+breadcrumbs:
+  - label: Products
+---
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>Rapid test kits</h2><p>Screen at intake, at the collection point or on the lab bench.</p></div>
+    <div class="grid grid--3">
+      {%- for c in categories | whereGroup("kits") %}{% include "partials/card.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="section section--card">
+  <div class="container">
+    <div class="section-head"><h2>Sample preparation</h2><p>Extraction, cleanup, filtration and handling for HPLC, LC-MS and GC-MS workflows.</p></div>
+    <div class="grid grid--3">
+      {%- for c in categories | whereGroup("prep") %}{% include "partials/card.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>

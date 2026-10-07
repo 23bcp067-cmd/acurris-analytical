@@ -1,0 +1,41 @@
+---
+layout: layouts/base.njk
+title: Evaluation pack
+metaTitle: "Evaluation Pack: Test Our Kits on Your Samples | Acurris Analytical"
+description: "Order a paid evaluation pack for any Acurris Analytical category and test it on your own samples. The cost is credited against your first order."
+pageType: evaluation
+breadcrumbs:
+  - label: Evaluation pack
+---
+{%- import "partials/forms.njk" as forms with context %}
+<section class="page-head">
+  <div class="wrap">
+    {% include "partials/breadcrumbs.njk" %}
+    <div class="page-head-grid">
+      <div>
+        <p class="kicker">Evaluation pack</p>
+        <h1>Test on your own samples before you commit</h1>
+        <p class="lead">A small quantity of one product, enough to run it on your own matrices next to your current method.</p>
+      </div>
+      <div class="page-head-media"><img src="/assets/img/products/my-afb1-m.webp" width="600" height="450" alt="" style="width:100%"></div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap cta-grid">
+    <div>
+      <h2>How it works</h2>
+      <table class="spec" style="margin-bottom:32px">
+        <tbody>
+          <tr><th scope="row">Price</th><td>{{ site.evalPack.price or "Confirmed by email with availability, before anything ships" }}</td></tr>
+          <tr><th scope="row">Credit</th><td>The pack cost comes off your first volume order in full</td></tr>
+          <tr><th scope="row">Limit</th><td>{{ site.evalPack.limitPerOrg }} packs per organization, from any category</td></tr>
+          <tr><th scope="row">Support</th><td>Our technical team helps you set up and read results</td></tr>
+        </tbody>
+      </table>
+      <h2 class="h3">Why we ask for details</h2>
+      <p>We match the pack to your analyte, matrix and equipment, so your results reflect real use. A pack that does not fit your method tells you nothing.</p>
+    </div>
+    {{ forms.sample("sample") }}
+  </div>
+</section>

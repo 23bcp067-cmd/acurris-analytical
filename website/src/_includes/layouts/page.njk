@@ -1,0 +1,14 @@
+---
+layout: layouts/base.njk
+---
+<section class="page-hero">
+  <div class="container">
+    {% include "partials/breadcrumbs.njk" %}
+    {% if heroIcon %}<div class="page-hero-icon">{% icon heroIcon %}</div>{% endif %}
+    {% if eyebrow %}<span class="eyebrow" style="margin-top:var(--space-lg)">{{ eyebrow }}</span>{% endif %}
+    <h1>{{ heading or title }}</h1>
+    {% if intro %}<p class="lead">{{ intro }}</p>{% endif %}
+  </div>
+</section>
+{{ content | safe }}
+{% if not hideCtaBand %}{% include "partials/cta-band.njk" %}{% endif %}

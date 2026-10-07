@@ -1,0 +1,16 @@
+{%- import "partials/forms.njk" as forms with context %}
+<section class="cta-band" aria-labelledby="cta-band-title">
+  <div class="wrap cta-grid">
+    <div>
+      <h2 id="cta-band-title">{{ ctaHeading or "Send your requirement. We quote within " + site.supportHours + " hours." }}</h2>
+      <p class="lead">Analyte, matrix and rough monthly volume are enough to start. A technical team member replies with the matching product, price, lead time and spec sheet.</p>
+      <ul class="contact-list">
+        <li>{% icon "clock" %}<span>Reply within {{ site.supportHours }} hours on working days</span></li>
+        <li>{% icon "package" %}<span><a href="/evaluation-pack/">Evaluation pack</a>, cost credited to your first order</span></li>
+        <li>{% icon "mail" %}<a href="mailto:{{ site.email }}" data-track="email_click">{{ site.email }}</a></li>
+        {%- if site.phone %}<li>{% icon "phone" %}<a href="tel:{{ site.phone }}" data-track="call_click">{{ site.phoneDisplay or site.phone }}</a></li>{% endif %}
+      </ul>
+    </div>
+    {{ forms.rfq("band", stickyCategory or "") }}
+  </div>
+</section>

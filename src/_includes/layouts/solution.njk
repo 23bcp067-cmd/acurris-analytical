@@ -1,0 +1,72 @@
+---
+layout: layouts/base.njk
+pageType: solution
+---
+{%- set lead = categories | findBySlug(recommended[0]) %}
+<section class="page-head solutions-detail-head science-surface">
+  {% set scienceFieldVariant = "science-field--solutions" %}
+  {% include "partials/science-field.njk" %}
+  <div class="wrap">
+    {% include "partials/breadcrumbs.njk" %}
+    <div class="page-head-grid solutions-detail-grid">
+      <div class="solutions-detail-copy">
+        <p class="kicker">Application · {{ shortName }}</p>
+        <h1>{{ heading }}</h1>
+        <p class="lead">{{ intro }}</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="/request-quote/?category={{ recommended[0] }}">Request a quote</a>
+          <a class="btn btn--secondary" href="#products">Products for {{ shortName }}</a>
+        </div>
+        <div class="solutions-detail-meta">
+          <span>{% icon "clock" %}Reply within {{ site.supportHours }} h</span>
+          <span>{% icon "flask-conical" %}Method-fit product selection</span>
+          <span>{% icon "package" %}<a href="/evaluation-pack/?category={{ recommended[0] }}">Evaluation pack</a></span>
+        </div>
+      </div>
+      <div class="page-head-media solutions-detail-media">
+        <div class="solutions-detail-visual">
+          <img src="/assets/img/products/{{ heroImg or lead.img }}-l.webp" srcset="/assets/img/products/{{ heroImg or lead.img }}-m.webp 600w, /assets/img/products/{{ heroImg or lead.img }}-l.webp 1200w" sizes="(min-width: 1024px) 50vw, 100vw" width="1200" height="900" alt="{{ heading }} workflow" fetchpriority="high">
+          <span class="solutions-detail-badge">Analytical workflow</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section solutions-detail-body">
+  <div class="wrap solutions-detail-layout">
+    <div class="prose">{{ content | safe }}</div>
+    <aside class="solutions-aside">
+      <div class="solution-callout">
+        <p class="eyebrow">Talk to our technical team</p>
+        <h2>Product selection starts with the method.</h2>
+        <p>Tell us what you test, the matrix and your monthly volume. We reply within {{ site.supportHours }} hours with a recommendation and a quote.</p>
+        <a class="btn btn--primary btn--block" href="/request-quote/?category={{ recommended[0] }}">Ask a question</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section" id="products">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Products for {{ shortName }}</h2></div><a class="arrow-link" href="/products/">Full catalog {% icon "arrow-right" %}</a></div>
+    <div class="solutions-product-grid">
+      {% for slug in recommended %}
+      {% set c = categories | findBySlug(slug) %}
+      <article class="solutions-product-card">
+        <a class="solutions-product-card-media" href="/products/{{ c.slug }}/" aria-label="View {{ c.name }} products">
+          <img src="/assets/img/products/{{ c.img }}-m.webp" width="800" height="600" alt="{{ c.name }} product category" loading="lazy">
+        </a>
+        <div class="solutions-product-card-body">
+          <p class="eyebrow">Product category</p>
+          <h3><a href="/products/{{ c.slug }}/">{{ c.name }}</a></h3>
+          <p>{{ c.nav }}</p>
+          <a class="arrow-link" href="/products/{{ c.slug }}/">Explore category {% icon "arrow-right" %}</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta-band.njk" %}

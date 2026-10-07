@@ -1,0 +1,192 @@
+---
+layout: layouts/base.njk
+metaTitle: "Acurris Analytical | Rapid Food Safety Test Kits and Sample Preparation in India"
+description: "Rapid screening kits for mycotoxins, antibiotic residues and milk adulterants, plus QuEChERS, dSPE, SPE and filtration consumables. Stocked in India, technical reply within 48 hours."
+pageType: home
+---
+{%- set kits = categories | whereGroup("kits") %}
+{%- set prep = categories | whereGroup("prep") %}
+{%- set spotlight = ["quechers", "mycotoxins", "antibiotic-residues", "food-adulteration"] %}
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Food safety testing supplies</span>
+      <h1>Rapid test kits and sample prep, supplied and supported in India</h1>
+      <p class="lead">Screening kits for mycotoxins, antibiotic residues and milk adulterants, and QuEChERS, dSPE, SPE and filtration consumables for food testing labs, dairies and feed producers.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/request-quote/" data-cta="hero">Request a quote</a>
+        <a class="btn btn--secondary" href="/products/">Browse products</a>
+      </div>
+    </div>
+    <div class="index-panel" aria-label="Most requested categories">
+      <div class="index-panel-head"><span>Most requested</span><span>{{ categories.length }} categories</span></div>
+      <ul>
+        {%- for slug in spotlight %}{% set c = categories | findBySlug(slug) %}
+        <li><a href="/products/{{ c.slug }}/"><span class="icon-tile">{% icon c.icon %}</span><span><strong>{{ c.name }}</strong><span class="desc">{{ c.nav }}</span></span>{% icon "arrow-right", "icon arrow" %}</a></li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="section--card" style="border-top:0">
+  <div class="container"><div class="trust-row">
+    <div class="trust-item">{% icon "clock" %}<div><strong>Technical reply within {{ site.supportHours }} hours</strong><span>Method and matrix help from people who run these tests</span></div></div>
+    <div class="trust-item">{% icon "package" %}<div><strong>Evaluation pack</strong><span>Test on your own samples. Cost credited to your first order</span></div></div>
+    <div class="trust-item">{% icon "map-pin" %}<div><strong>Stocked in India</strong><span>Reorders do not wait on an import cycle</span></div></div>
+  </div></div>
+</div>
+
+<section class="section" aria-labelledby="families-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Products</span>
+      <h2 id="families-title">Two product families, one supplier</h2>
+      <p>Screen at intake with rapid kits. Prepare samples for confirmatory analysis with matched consumables. Order both in one quote.</p>
+    </div>
+    <div class="grid grid--2">
+      <div class="family reveal">
+        <div class="family-head"><span class="icon-tile">{% icon "test-tube" %}</span><div><h3>Rapid test kits</h3><p>Screening for contaminants, residues, adulterants, pathogens and allergens</p></div></div>
+        <ul class="chips">{% for c in kits %}<li><a class="chip" href="/products/{{ c.slug }}/">{% icon c.icon %}{{ c.name }}</a></li>{% endfor %}</ul>
+      </div>
+      <div class="family reveal">
+        <div class="family-head"><span class="icon-tile">{% icon "flask-conical" %}</span><div><h3>Sample preparation</h3><p>Extraction, cleanup, filtration and handling for chromatography workflows</p></div></div>
+        <ul class="chips">{% for c in prep %}<li><a class="chip" href="/products/{{ c.slug }}/">{% icon c.icon %}{{ c.name }}</a></li>{% endfor %}</ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--card" aria-labelledby="spot-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Where most buyers start</span>
+      <h2 id="spot-title">The tests Indian food businesses run every day</h2>
+    </div>
+    <div class="grid grid--4">
+      <article class="card card--link reveal">
+        <span class="icon-tile">{% icon "flask-conical" %}</span>
+        <h3><a class="stretched" href="/products/quechers/" style="color:inherit;text-decoration:none">QuEChERS</a></h3>
+        <p>Pre-weighed original, AOAC and EN salts. Your analysts stop weighing salts by hand.</p>
+        <span class="card-link" aria-hidden="true">View category {% icon "arrow-right" %}</span>
+      </article>
+      <article class="card card--link reveal">
+        <span class="icon-tile">{% icon "wheat" %}</span>
+        <h3><a class="stretched" href="/products/mycotoxins/" style="color:inherit;text-decoration:none">Mycotoxins</a></h3>
+        <p>Screen maize, groundnut and feed ingredients at intake, before a bad lot reaches storage.</p>
+        <span class="card-link" aria-hidden="true">View category {% icon "arrow-right" %}</span>
+      </article>
+      <article class="card card--link reveal">
+        <span class="icon-tile">{% icon "test-tube" %}</span>
+        <h3><a class="stretched" href="/products/antibiotic-residues/" style="color:inherit;text-decoration:none">Antibiotic residues</a></h3>
+        <p>Accept or reject each tanker of raw milk in minutes, at the collection point.</p>
+        <span class="card-link" aria-hidden="true">View category {% icon "arrow-right" %}</span>
+      </article>
+      <article class="card card--link reveal">
+        <span class="icon-tile">{% icon "milk" %}</span>
+        <h3><a class="stretched" href="/products/food-adulteration/" style="color:inherit;text-decoration:none">Food adulteration</a></h3>
+        <p>Check milk for urea, starch, detergent and synthetic milk with color-change tests.</p>
+        <span class="card-link" aria-hidden="true">View category {% icon "arrow-right" %}</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="who-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Who we serve</span>
+      <h2 id="who-title">Built around how you test</h2>
+    </div>
+    <div class="grid grid--3">
+      <article class="card card--link reveal">
+        <span class="icon-tile">{% icon "microscope" %}</span>
+        <h3><a class="stretched" href="/solutions/food-testing-labs/" style="color:inherit;text-decoration:none">Food testing labs</a></h3>
+        <p>One supplier for kits and sample prep across your NABL scope, with technical support from people who run the methods.</p>
+        <span class="card-link" aria-hidden="true">See how we help {% icon "arrow-right" %}</span>
+      </article>
+      <article class="card card--link reveal">
+        <span class="icon-tile">{% icon "milk" %}</span>
+        <h3><a class="stretched" href="/solutions/dairy/" style="color:inherit;text-decoration:none">Dairy processors</a></h3>
+        <p>Screening panels for collection centers and plant intake that your staff can run without a lab.</p>
+        <span class="card-link" aria-hidden="true">See how we help {% icon "arrow-right" %}</span>
+      </article>
+      <article class="card card--link reveal">
+        <span class="icon-tile">{% icon "wheat" %}</span>
+        <h3><a class="stretched" href="/solutions/feed-and-poultry/" style="color:inherit;text-decoration:none">Feed and poultry</a></h3>
+        <p>Mycotoxin screening for maize, DDGS and oilcake at the mill gate, with sampling guidance.</p>
+        <span class="card-link" aria-hidden="true">See how we help {% icon "arrow-right" %}</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--muted" aria-labelledby="how-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">How buying works</span>
+      <h2 id="how-title">From first message to first order</h2>
+    </div>
+    <ol class="steps">
+      <li class="reveal"><h3>Send your requirement</h3><p>Analyte, matrix and rough volume. Four fields to start, more if you have them.</p></li>
+      <li class="reveal"><h3>Get a quote within {{ site.supportHours }} hours</h3><p>Pricing, lead time and a spec sheet, with a recommendation if more than one product fits.</p></li>
+      <li class="reveal"><h3>Evaluate, then order</h3><p>Run an evaluation pack on your own samples. Its cost comes off your first order.</p></li>
+    </ol>
+    <div class="btn-row" style="margin-top:var(--space-xl)"><a class="btn btn--primary" href="/request-quote/">Start step 1</a></div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="support-title">
+  <div class="container split">
+    <div class="reveal">
+      <span class="eyebrow">Technical support</span>
+      <h2 id="support-title">A reply from someone who knows the method</h2>
+      <p class="lead">Rapid tests fail quietly when the incubation drifts, the sample is too small or the matrix interferes. Our technical team helps you set them up right.</p>
+    </div>
+    <ul class="check-list reveal">
+      <li>{% icon "check" %}<span><strong>Reply within {{ site.supportHours }} hours</strong> on working days, by email or video call</span></li>
+      <li>{% icon "check" %}<span><strong>Method and matrix guidance</strong> before you order, so you buy the right format</span></li>
+      <li>{% icon "check" %}<span><strong>Setup guide with every kit</strong>, written for the bench and the collection point</span></li>
+      <li>{% icon "check" %}<span><strong>Troubleshooting after delivery</strong> when results look wrong</span></li>
+    </ul>
+  </div>
+</section>
+
+{%- if site.flags.qualityProcess %}
+<section class="section section--card" aria-labelledby="quality-title">
+  <div class="container split">
+    <div>
+      <span class="eyebrow">Quality process</span>
+      <h2 id="quality-title">How we check what we supply</h2>
+    </div>
+    <ul class="check-list">
+      <li>{% icon "shield-check" %}<span><strong>First lot verified</strong> before a new product goes on sale</span></li>
+      <li>{% icon "shield-check" %}<span><strong>Supplier certificate of analysis</strong> checked for every lot</span></li>
+      <li>{% icon "shield-check" %}<span><strong>Periodic physical rechecks</strong> on a recorded schedule</span></li>
+      <li>{% icon "shield-check" %}<span><strong>Full re-verification</strong> whenever a manufacturing site or formulation changes</span></li>
+    </ul>
+  </div>
+</section>
+{%- endif %}
+
+<section class="section{% if not site.flags.qualityProcess %} section--card{% endif %}" aria-labelledby="guides-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Resources</span>
+      <h2 id="guides-title">Practical testing guides</h2>
+    </div>
+    <div class="grid grid--3">
+      {%- for a in collections.articles %}
+      <article class="card card--link reveal">
+        <span class="tag">Guide</span>
+        <h3><a class="stretched" href="{{ a.url }}" style="color:inherit;text-decoration:none">{{ a.data.title }}</a></h3>
+        <p>{{ a.data.description }}</p>
+        <span class="card-link" aria-hidden="true">Read the guide {% icon "arrow-right" %}</span>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta-band.njk" %}

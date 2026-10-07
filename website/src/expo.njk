@@ -1,0 +1,17 @@
+---
+layout: layouts/base.njk
+title: Nice to meet you
+metaTitle: "Acurris Analytical | Trade show"
+noindex: true
+minimalChrome: true
+hideSticky: true
+pageType: expo
+---
+{%- import "partials/forms.njk" as forms with context %}
+<div class="expo-wrap">
+  <span class="eyebrow">Thanks for stopping by</span>
+  <h1>Leave your details and we'll follow up within {{ site.supportHours }} hours</h1>
+  <p class="muted">We'll send pricing and a spec sheet for what you're interested in. Want to try a product first? Ask about our evaluation pack, credited to your first order.</p>
+  {{ forms.expo("expo") }}
+  <p class="small muted" style="margin-top:var(--space-lg)"><a href="/">Visit the full site</a> &middot; <a href="/privacy/">Privacy</a></p>
+</div>

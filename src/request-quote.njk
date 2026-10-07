@@ -1,0 +1,74 @@
+---
+layout: layouts/base.njk
+title: Request a quote
+metaTitle: "Request a Quote | Acurris Analytical"
+description: "Request pricing, lead time and spec sheets for rapid food safety test kits and sample preparation products. Reply within 48 hours."
+pageType: rfq
+hideSticky: true
+breadcrumbs:
+  - label: Request a quote
+---
+{%- import "partials/forms.njk" as forms with context %}
+<section class="page-head rfq-page-head">
+  <div class="wrap">
+    {% include "partials/breadcrumbs.njk" %}
+    <div class="rfq-intro">
+      <p class="eyebrow">REQUEST A QUOTE</p>
+      <h1>Tell us what you need</h1>
+      <p class="lead">Share your product or technical requirement and our team can help with pricing, availability and product information.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section rfq-page">
+  <div class="wrap">
+    <div class="rfq-shell">
+      <div class="rfq-steps" aria-label="Request quote steps">
+        <div class="rfq-step is-current" data-rfq-step-indicator="1">
+          <span class="rfq-step-number">01</span>
+          <div><strong>Step 01</strong><span>Your Requirements</span></div>
+        </div>
+        <div class="rfq-step" data-rfq-step-indicator="2">
+          <span class="rfq-step-number">02</span>
+          <div><strong>Step 02</strong><span>Contact Details</span></div>
+        </div>
+      </div>
+
+      <div class="rfq-layout">
+        <aside class="rfq-sidebar">
+          <div class="rfq-panel-card">
+            <div class="rfq-card-header">
+              <h2>Your quote list</h2>
+              <span class="rfq-list-count" data-quote-summary>0 products in your request</span>
+            </div>
+            <div class="qlist" data-quote-list>
+              <p class="qlist-empty" data-quote-empty>No products added yet. Use <strong>Add to quote</strong> on any <a href="/products/">category page</a>, or describe what you need in the form.</p>
+            </div>
+            <div class="rfq-add-link">
+              <a class="btn btn--secondary btn--block" href="/products/">+ Add another product</a>
+            </div>
+          </div>
+
+          <div class="support-card">
+            <p class="panel-kicker">Need help choosing a product?</p>
+            <h3>Our team can help with</h3>
+            <ul>
+              <li>Product selection</li>
+              <li>Technical requirements</li>
+              <li>Application questions</li>
+              <li>Quote requests</li>
+            </ul>
+            <div class="support-contact">
+              <a href="mailto:{{ site.email }}" data-track="email_click">{{ site.email }}</a>
+              {%- if site.phone %}<a href="tel:{{ site.phone }}" data-track="call_click">{{ site.phoneDisplay or site.phone }}</a>{% endif %}
+            </div>
+          </div>
+        </aside>
+
+        <div class="rfq-panel-wrap">
+          {{ forms.rfq("quote", "", "Your requirement") }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

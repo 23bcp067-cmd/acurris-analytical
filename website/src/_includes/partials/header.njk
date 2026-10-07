@@ -1,0 +1,123 @@
+{%- set kits = categories | whereGroup("kits") %}
+{%- set prep = categories | whereGroup("prep") %}
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Acurris Analytical home">
+      {% include "partials/logo-mark.njk" %}
+      <span class="brand-name">Acurris <span>Analytical</span></span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Main">
+      <ul>
+        <li>
+          <button class="nav-link" type="button" aria-expanded="false" aria-controls="mega-products" data-mega-toggle>
+            Products {% icon "chevron-down" %}
+          </button>
+        </li>
+        <li>
+          <button class="nav-link" type="button" aria-expanded="false" aria-controls="mega-solutions" data-mega-toggle>
+            Solutions {% icon "chevron-down" %}
+          </button>
+        </li>
+        <li><a class="nav-link" href="/resources/"{% if page.url.startsWith('/resources/') %} aria-current="page"{% endif %}>Resources</a></li>
+        <li><a class="nav-link" href="/about/"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn--primary" href="/request-quote/" data-cta="header"><span class="hide-mobile">Request a quote</span><span class="show-mobile">Quote</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu" data-drawer-toggle>
+        <span data-icon-open>{% icon "menu" %}</span><span data-icon-close hidden>{% icon "x" %}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mega" id="mega-products" hidden>
+    <div class="container mega-inner">
+      <div>
+        <h2>Rapid test kits</h2>
+        <ul>
+          {%- for c in kits %}
+          <li><a class="mega-link" href="/products/{{ c.slug }}/">{% icon c.icon %}<span><strong>{{ c.name }}</strong><span>{{ c.nav }}</span></span></a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      <div>
+        <h2>Sample preparation</h2>
+        <ul>
+          {%- for c in prep %}
+          <li><a class="mega-link" href="/products/{{ c.slug }}/">{% icon c.icon %}<span><strong>{{ c.name }}</strong><span>{{ c.nav }}</span></span></a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      <div class="mega-aside">
+        <h2>Not sure what fits?</h2>
+        <p>Tell us your analyte and sample matrix. Our technical team replies within {{ site.supportHours }} hours with a recommendation and a quote.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="/request-quote/">Request a quote</a>
+          <a class="btn btn--ghost" href="/products/">All products</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mega" id="mega-solutions" hidden>
+    <div class="container mega-inner">
+      <div>
+        <h2>By buyer</h2>
+        <ul>
+          <li><a class="mega-link" href="/solutions/food-testing-labs/">{% icon "microscope" %}<span><strong>Food testing labs</strong><span>Kits and sample prep across your whole analyte panel</span></span></a></li>
+          <li><a class="mega-link" href="/solutions/dairy/">{% icon "milk" %}<span><strong>Dairy processors</strong><span>Milk screening at collection and plant intake</span></span></a></li>
+          <li><a class="mega-link" href="/solutions/feed-and-poultry/">{% icon "wheat" %}<span><strong>Feed and poultry</strong><span>Mycotoxin screening of grain and feed ingredients</span></span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Try before you commit</h2>
+        <ul>
+          <li><a class="mega-link" href="/evaluation-pack/">{% icon "package" %}<span><strong>Evaluation pack</strong><span>Test on your own samples. Cost credited to your first order</span></span></a></li>
+          <li><a class="mega-link" href="/resources/">{% icon "file-text" %}<span><strong>Testing guides</strong><span>Practical notes on sampling, extraction and screening</span></span></a></li>
+        </ul>
+      </div>
+      <div class="mega-aside">
+        <h2>Technical support</h2>
+        <p>Method and matrix questions get a reply from our technical team within {{ site.supportHours }} hours.</p>
+        <a class="btn btn--primary" href="/request-quote/">Ask a question</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="container">
+    <ul>
+      <li>
+        <details class="drawer-group">
+          <summary>Products {% icon "chevron-down" %}</summary>
+          <div class="drawer-sub">
+            <h3>Rapid test kits</h3>
+            <ul>{% for c in kits %}<li><a href="/products/{{ c.slug }}/">{% icon c.icon %}{{ c.name }}</a></li>{% endfor %}</ul>
+            <h3>Sample preparation</h3>
+            <ul>{% for c in prep %}<li><a href="/products/{{ c.slug }}/">{% icon c.icon %}{{ c.name }}</a></li>{% endfor %}</ul>
+            <a href="/products/">{% icon "arrow-right" %}All products</a>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details class="drawer-group">
+          <summary>Solutions {% icon "chevron-down" %}</summary>
+          <div class="drawer-sub">
+            <ul>
+              <li><a href="/solutions/food-testing-labs/">{% icon "microscope" %}Food testing labs</a></li>
+              <li><a href="/solutions/dairy/">{% icon "milk" %}Dairy processors</a></li>
+              <li><a href="/solutions/feed-and-poultry/">{% icon "wheat" %}Feed and poultry</a></li>
+            </ul>
+          </div>
+        </details>
+      </li>
+      <li class="drawer-group"><a class="drawer-link" href="/evaluation-pack/">Evaluation pack</a></li>
+      <li class="drawer-group"><a class="drawer-link" href="/resources/">Resources</a></li>
+      <li class="drawer-group"><a class="drawer-link" href="/about/">About</a></li>
+    </ul>
+    <a class="btn btn--primary btn--block" href="/request-quote/">Request a quote</a>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+---
+<section class="page-head">
+  <div class="wrap">
+    {% include "partials/breadcrumbs.njk" %}
+    <div style="padding-block:8px 40px">
+      {% if eyebrow %}<p class="kicker">{{ eyebrow }}</p>{% endif %}
+      <h1>{{ heading or title }}</h1>
+      {% if intro %}<p class="lead" style="margin-bottom:0">{{ intro }}</p>{% endif %}
+    </div>
+  </div>
+</section>
+{{ content | safe }}
+{% if not hideCtaBand %}{% include "partials/cta-band.njk" %}{% endif %}

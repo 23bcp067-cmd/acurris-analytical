@@ -1,0 +1,26 @@
+---
+layout: layouts/base.njk
+pageType: article
+---
+{%- set relCats = [] %}{% for s in relatedCategories %}{% set relCats = (relCats.push(categories | findBySlug(s)), relCats) %}{% endfor %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":{{ title | json | safe }},"description":{{ description | json | safe }},"datePublished":"{{ page.date | isoDate }}","author":{"@type":"Organization","name":"Acurris Analytical"},"publisher":{"@type":"Organization","name":"Acurris Analytical"},"mainEntityOfPage":"{{ site.url }}{{ page.url }}"}
+</script>
+<section class="page-hero">
+  <div class="container">
+    {% include "partials/breadcrumbs.njk" %}
+    <span class="eyebrow" style="margin-top:var(--space-lg)">Testing guide</span>
+    <h1>{{ title }}</h1>
+    <p class="lead">{{ description }}</p>
+    <div class="article-meta"><span>{{ page.date | readableDate }}</span><span>{{ content | readTime }} min read</span><span>Acurris Analytical technical team</span></div>
+  </div>
+</section>
+<div class="article-body">
+  <div class="container prose">
+    {{ content | safe }}
+    {%- for c in relCats %}
+    <a class="inline-card" href="/products/{{ c.slug }}/"><span class="icon-tile">{% icon c.icon %}</span><span><strong>{{ c.h1 }}</strong><span>{{ c.nav }}</span></span></a>
+    {%- endfor %}
+  </div>
+</div>
+{% include "partials/cta-band.njk" %}

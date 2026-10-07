@@ -1,0 +1,182 @@
+---
+layout: layouts/page.njk
+title: Products
+metaTitle: "Catalog: Rapid Food Safety Test Kits and Sample Prep | Acurris Analytical"
+description: "All 11 product categories and 51 products: rapid test kits for mycotoxins, residues, adulterants, pathogens and allergens, plus QuEChERS, dSPE, SPE, filtration and sample handling."
+eyebrow: Catalog
+heading: Rapid test kits and sample preparation
+intro: "Eleven categories sold under the Acurris Analytical name and supported by our technical team. Formats, pack sizes and prices are confirmed in your quote."
+breadcrumbs:
+  - label: Products
+---
+{%- set kits = categories | whereGroup("kits") %}
+{%- set prep = categories | whereGroup("prep") %}
+{%- set featureCats = ["quechers", "dspe", "mycotoxins", "filtration"] %}
+
+<section class="products-hero science-surface" aria-labelledby="products-hero-title">
+  {% set scienceFieldVariant = "science-field--products" %}
+  {% include "partials/science-field.njk" %}
+  <div class="wrap products-hero-grid">
+    <div class="products-hero-copy">
+      <p class="eyebrow">ANALYTICAL PRODUCTS</p>
+      <h1 id="products-hero-title">Reliable Products for Accurate Analysis</h1>
+      <p class="lead">Our product range is built around the matrices, methods and limits our customers test every day, from intake screening to chromatography-ready sample preparation.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="#catalog">Explore Products</a>
+        <a class="btn btn--secondary" href="/request-quote/">Request a Quote</a>
+      </div>
+      <div class="products-badges" aria-label="Catalog highlights">
+        <span>{{ categories.length }} categories</span>
+        <span>Method-led selection</span>
+        <span>Technical support</span>
+      </div>
+    </div>
+
+    <div class="products-hero-visual">
+      <div class="products-hero-frame">
+        <img src="/assets/img/products/hero-l.webp" srcset="/assets/img/products/hero-m.webp 800w, /assets/img/products/hero-l.webp 1600w" sizes="(min-width: 1024px) 48vw, 100vw" width="1600" height="1100" alt="Analytical products and laboratory consumables from Acurris Analytical" fetchpriority="high">
+      </div>
+      <div class="products-hero-tag">
+        <span>Analytical range</span>
+        <strong>Rapid kits + sample prep</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products-nav-wrap" aria-label="Product category navigation">
+  <div class="wrap">
+    <nav class="category-nav">
+      {% for c in categories %}
+        <a href="#{{ c.slug }}" class="category-pill">{{ c.name }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</section>
+
+<section id="catalog" class="section products-catalog">
+  <div class="wrap">
+    <div class="products-panel-header">
+      <div>
+        <p class="eyebrow">Product catalog</p>
+        <h2>Explore our analytical range</h2>
+      </div>
+    </div>
+
+    <div class="products-grid">
+      {% for c in categories %}
+      <article id="{{ c.slug }}" class="product-category-card">
+        <div class="product-category-media">
+          <img src="/assets/img/products/{{ c.img }}-m.webp" width="800" height="600" alt="{{ c.name }} from Acurris Analytical" loading="lazy">
+        </div>
+        <div class="product-category-body">
+          <p class="mini-label">{{ "Rapid test kits" if c.group == "kits" else "Sample preparation" }}</p>
+          <h3>{{ c.name }}</h3>
+          <p>{{ c.nav }}</p>
+          <ul class="product-category-meta">
+            <li>{{ c.types.length }} products</li>
+            {% if c.tag %}<li>{{ c.tag }}</li>{% endif %}
+          </ul>
+          <a class="arrow-link" href="/products/{{ c.slug }}/">Explore Products {% icon "arrow-right" %}</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section products-feature-section" aria-labelledby="feature-range-title">
+  <div class="wrap">
+    <div class="products-panel-header">
+      <div>
+        <p class="eyebrow">Featured ranges</p>
+        <h2 id="feature-range-title">Core workflows for routine laboratory testing</h2>
+      </div>
+    </div>
+
+    <div class="featured-range">
+      <article class="featured-card featured-card--large">
+        <div class="featured-card-media">
+          <img src="/assets/img/products/cat-quechers-m.webp" width="1200" height="900" alt="QuEChERS extraction and sample cleanup workflow" loading="lazy">
+        </div>
+        <div class="featured-card-copy">
+          <p class="mini-label">Featured workflow</p>
+          <h3>QuEChERS extraction and cleanup</h3>
+          <p>Original, AOAC and EN formulations help labs move from raw sample to chromatography-ready extract with consistency across matrices.</p>
+          <a class="arrow-link" href="/products/quechers/">View QuEChERS {% icon "arrow-right" %}</a>
+        </div>
+      </article>
+
+      <div class="featured-stack">
+        {% for slug in ["dspe", "mycotoxins", "filtration"] %}
+          {% set c = categories | findBySlug(slug) %}
+          <article class="featured-card">
+            <div class="featured-card-media">
+              <img src="/assets/img/products/{{ c.img }}-m.webp" width="800" height="600" alt="{{ c.name }} analytical category" loading="lazy">
+            </div>
+            <div class="featured-card-copy">
+              <p class="mini-label">{{ c.name }}</p>
+              <a href="/products/{{ c.slug }}/">Explore range {% icon "arrow-right" %}</a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section applications-strip" aria-labelledby="applications-strip-title">
+  <div class="wrap">
+    <div class="products-panel-header">
+      <div>
+        <p class="eyebrow">Applications</p>
+        <h2 id="applications-strip-title">Solutions built around the workflows customers already run</h2>
+      </div>
+    </div>
+
+    <div class="application-grid">
+      <article class="application-card">
+        <div class="application-card-copy">
+          <p class="mini-label">Food testing labs</p>
+          <h3>Food testing labs</h3>
+          <p>Products matched to routine contaminant, residue and matrix screening.</p>
+          <a href="/solutions/food-testing-labs/">Explore solution {% icon "arrow-right" %}</a>
+        </div>
+      </article>
+      <article class="application-card">
+        <div class="application-card-copy">
+          <p class="mini-label">Dairy processors</p>
+          <h3>Dairy processors</h3>
+          <p>Screening solutions for collection points, residue checks and milk quality decisions.</p>
+          <a href="/solutions/dairy/">Explore solution {% icon "arrow-right" %}</a>
+        </div>
+      </article>
+      <article class="application-card">
+        <div class="application-card-copy">
+          <p class="mini-label">Feed and poultry</p>
+          <h3>Feed and poultry</h3>
+          <p>Analytical support for intake screening and contamination control.</p>
+          <a href="/solutions/feed-and-poultry/">Explore solution {% icon "arrow-right" %}</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section products-final-cta science-surface">
+  {% set scienceFieldVariant = "science-field--dark" %}
+  {% include "partials/science-field.njk" %}
+  <div class="wrap">
+    <div class="products-cta-panel">
+      <div>
+        <p class="eyebrow">Need help?</p>
+        <h2>Need help choosing the right product?</h2>
+        <p>Tell us your matrix, analyte and workflow and we can narrow the right category for your testing program.</p>
+      </div>
+      <div class="btn-row products-cta-actions">
+        <a class="btn btn--primary" href="/products/">Explore Products</a>
+        <a class="btn btn--secondary" href="/request-quote/">Request a Quote</a>
+      </div>
+    </div>
+  </div>
+</section>

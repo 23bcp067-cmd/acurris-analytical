@@ -1,0 +1,249 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Plex";src:url(node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:"Plex";src:url(node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:"Plex";src:url(node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:"PlexMono";src:url(node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2);font-weight:500}
+html,body{margin:0;background:transparent}
+</style>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+</head><body>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+const BRAND = '#0B6E4F', INK = '#14201B', TEST = '#B0174F';
+
+await document.fonts.load('600 20px Plex'); await document.fonts.load('700 20px Plex');
+await document.fonts.load('400 20px Plex'); await document.fonts.load('500 20px PlexMono');
+
+let renderer, pmrem, envTex;
+function setup(w, h) {
+  if (renderer) renderer.dispose();
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(w, h);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.NeutralToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.setClearColor(0x000000, 0);
+  document.body.innerHTML = '';
+  document.body.appendChild(renderer.domElement);
+  pmrem = new THREE.PMREMGenerator(renderer);
+  envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+}
+
+/* ---------- materials ---------- */
+const clearPP = () => new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: 0.12, transmission: 1, thickness: 0.12, ior: 1.46, transparent: true, side: THREE.DoubleSide, clearcoat: 0.4, clearcoatRoughness: 0.1, envMapIntensity: 1.1 });
+const milkyPP = () => new THREE.MeshPhysicalMaterial({ color: 0xf7f7f5, metalness: 0, roughness: 0.38, transmission: 0.55, thickness: 0.25, ior: 1.46, transparent: true, side: THREE.DoubleSide });
+const glass = (amber) => new THREE.MeshPhysicalMaterial({ color: amber ? 0xc9813a : 0xffffff, metalness: 0, roughness: 0.03, transmission: 1, thickness: 0.15, ior: 1.5, transparent: true, side: THREE.DoubleSide, attenuationColor: amber ? new THREE.Color(0x9a4d10) : new THREE.Color(0xffffff), attenuationDistance: amber ? 0.6 : 10, clearcoat: 1, clearcoatRoughness: 0.03 });
+const plastic = (c, r = 0.45) => new THREE.MeshStandardMaterial({ color: c, roughness: r, metalness: 0 });
+const powder = (c = 0xf3f3f0) => new THREE.MeshStandardMaterial({ color: c, roughness: 1, metalness: 0 });
+
+/* ---------- canvas textures ---------- */
+function tex(w, h, draw) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const g = c.getContext('2d'); draw(g, w, h);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+}
+function brandMark(g, x, y, s, color = BRAND) {
+  g.save(); g.translate(x, y); g.lineWidth = s * 0.11; g.strokeStyle = color;
+  const r = s * 0.25; g.beginPath(); g.roundRect(0, 0, s, s * 0.5, r); g.stroke();
+  g.fillStyle = color; g.fillRect(s * 0.36, s * 0.13, s * 0.08, s * 0.24); g.fillRect(s * 0.56, s * 0.13, s * 0.08, s * 0.24);
+  g.restore();
+}
+function tubeLabel({ title, sub = [], code = '', ml = 50, ticks = true }) {
+  return tex(1024, 512, (g, w, h) => {
+    g.fillStyle = '#fbfbf9'; g.fillRect(0, 0, w, h);
+    g.fillStyle = BRAND; g.fillRect(0, 0, w, 58);
+    g.fillStyle = '#fff'; g.font = '600 30px Plex'; g.fillText('ACURRIS ANALYTICAL', 300, 40);
+    g.fillStyle = INK; g.font = '700 64px Plex'; g.fillText(title, 300, 150);
+    g.font = '400 36px Plex'; g.fillStyle = '#26312c'; sub.forEach((s, i) => g.fillText(s, 300, 215 + i * 46));
+    if (code) { g.font = '500 28px PlexMono'; g.fillStyle = INK; g.fillText(code, 300, h - 40); }
+    if (ticks) { g.strokeStyle = '#4b5852'; g.fillStyle = '#4b5852'; g.lineWidth = 3; g.font = '500 22px PlexMono';
+      for (let i = 0; i <= 10; i++) { const y = h - 30 - i * ((h - 100) / 10); g.beginPath(); g.moveTo(170, y); g.lineTo(i % 5 === 0 ? 240 : 210, y); g.stroke(); if (i % 5 === 0 && i) g.fillText(String(Math.round(ml * i / 10)), 120 - (i===10?14:0), y + 8); } }
+  });
+}
+
+/* ---------- builders (units: cm) ---------- */
+function lathe(points, mat, seg = 72) { const g = new THREE.LatheGeometry(points.map(p => new THREE.Vector2(p[0], p[1])), seg); const m = new THREE.Mesh(g, mat); m.castShadow = true; return m; }
+function ridgedCap(r, h, color) {
+  const grp = new THREE.Group();
+  const body = new THREE.Mesh(new THREE.CylinderGeometry(r, r, h, 72), plastic(color, 0.5)); body.castShadow = true; grp.add(body);
+  const top = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.97, r, 0.06, 72), plastic(color, 0.4)); top.position.y = h / 2 + 0.03; grp.add(top);
+  const n = Math.round(r * 40);
+  for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2; const rib = new THREE.Mesh(new THREE.BoxGeometry(0.05, h * 0.86, 0.06), plastic(color, 0.5)); rib.position.set(Math.cos(a) * r, 0, Math.sin(a) * r); rib.rotation.y = -a; grp.add(rib); }
+  return grp;
+}
+function conical({ r, len, cap, label, fill = 0, fillColor = 0xf3f3f0, fill2 = null }) {
+  const grp = new THREE.Group();
+  const tip = r * 1.15;
+  const outer = [[0.001, 0], [r * 0.12, 0.02], [r * 0.5, tip * 0.45], [r * 0.95, tip], [r, tip + 0.2], [r * 1.01, len - 1.0], [r * 0.95, len - 0.95], [r * 0.95, len]];
+  grp.add(lathe(outer, clearPP()));
+  if (fill > 0) {
+    const fh = tip + fill; const k = 0.9;
+    const pts = [[0.001, 0.08], [r * 0.4 * k, tip * 0.45], [r * 0.9 * k, tip], [r * k, tip + 0.2], [r * k, fh], [0.001, fh + 0.02]];
+    grp.add(lathe(pts, powder(fillColor)));
+    if (fill2 !== null) { const pts2 = [[0.001, fh], [r * k, fh], [r * k, fh + fill2.h], [0.001, fh + fill2.h + 0.02]]; grp.add(lathe(pts2, powder(fill2.color))); }
+  }
+  const c = ridgedCap(r * 1.1, r * 0.95, cap); c.position.y = len + r * 0.45; grp.add(c);
+  if (label) {
+    const lh = Math.min(len * 0.42, 5);
+    const lg = new THREE.CylinderGeometry(r * 1.015, r * 1.015, lh, 72, 1, true, -Math.PI * 0.55, Math.PI * 1.1);
+    const lm = new THREE.Mesh(lg, new THREE.MeshStandardMaterial({ map: tubeLabel(label), roughness: 0.65, side: THREE.FrontSide }));
+    lm.position.y = tip + 0.9 + lh / 2 + (len - tip - 2 - lh) * 0.55; grp.add(lm);
+  }
+  return grp;
+}
+const tube50 = (o) => conical({ r: 1.45, len: 11.0, ...o });
+const tube15 = (o) => conical({ r: 0.85, len: 11.4, ...o });
+function microtube({ cap = 0xf2f2ef, fill = 0.8, fillColor = 0xf3f3f0, fill2 = null, labelText = '' }) {
+  const grp = new THREE.Group(); const r = 0.55, len = 3.6;
+  grp.add(lathe([[0.001, 0], [0.12, 0.05], [0.42, 1.1], [r, 1.6], [r, len], [r + 0.08, len], [r + 0.08, len + 0.12]], clearPP()));
+  const k = 0.88;
+  grp.add(lathe([[0.001, 0.1], [0.38 * k, 1.1], [r * k, 1.6], [r * k, 1.6 + fill * 0.6], [0.001, 1.6 + fill * 0.6 + 0.02]], powder(fillColor)));
+  if (fill2) grp.add(lathe([[0.001, 1.6 + fill * 0.6], [r * k, 1.6 + fill * 0.6], [r * k, 1.6 + fill * 0.6 + fill2.h], [0.001, 1.6 + fill * 0.6 + fill2.h + 0.01]], powder(fill2.color)));
+  const lid = new THREE.Mesh(new THREE.CylinderGeometry(r + 0.1, r + 0.1, 0.32, 64), plastic(cap, 0.35)); lid.position.y = len + 0.28; lid.castShadow = true; grp.add(lid);
+  const tab = new THREE.Mesh(new RoundedBoxGeometry(0.5, 0.1, 0.4, 2, 0.04), plastic(cap, 0.35)); tab.position.set(0, len + 0.35, r + 0.25); grp.add(tab);
+  if (labelText) {
+    const lg = new THREE.CylinderGeometry(r * 1.02, r * 1.02, 1.3, 48, 1, true, -Math.PI * 0.45, Math.PI * 0.9);
+    const lm = new THREE.Mesh(lg, new THREE.MeshStandardMaterial({ roughness: 0.6, map: tex(512, 256, (g, w, h) => { g.fillStyle = '#fbfbf9'; g.fillRect(0, 0, w, h); g.fillStyle = BRAND; g.fillRect(0, 0, w, 36); g.fillStyle = INK; g.font = '700 54px Plex'; g.textAlign = 'center'; g.fillText(labelText, w / 2, 130); g.font = '500 30px PlexMono'; g.fillText('dSPE 2 mL', w / 2, 200); }) }));
+    lm.position.y = 2.5; grp.add(lm);
+  }
+  return grp;
+}
+function speCartridge({ bed = 0xf4f4f0, label = 'C18', sub = '500 mg / 3 mL' }) {
+  const grp = new THREE.Group(); const r = 0.5, len = 6.6;
+  grp.add(lathe([[0.001, -0.9], [0.13, -0.9], [0.13, -0.15], [0.22, 0], [r, 0.25], [r, len], [r + 0.32, len], [r + 0.32, len + 0.12], [r - 0.05, len + 0.12]], milkyPP()));
+  const fr = (y) => { const d = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.94, r * 0.94, 0.08, 48), plastic(0xdedcd5, 0.9)); d.position.y = y; return d; };
+  const b = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.94, r * 0.94, 0.9, 48), powder(bed)); b.position.y = 0.85; grp.add(b, fr(0.36), fr(1.34));
+  const lg = new THREE.CylinderGeometry(r * 1.02, r * 1.02, 2.6, 48, 1, true, -Math.PI * 0.45, Math.PI * 0.9);
+  const lm = new THREE.Mesh(lg, new THREE.MeshStandardMaterial({ roughness: 0.6, map: tex(512, 512, (g, w, h) => { g.fillStyle = '#fbfbf9'; g.fillRect(0, 0, w, h); g.fillStyle = BRAND; g.fillRect(0, 0, w, 60); g.fillStyle = '#fff'; g.font = '600 26px Plex'; g.textAlign = 'center'; g.fillText('ACURRIS', w / 2, 42); g.fillStyle = INK; g.font = '700 96px Plex'; g.fillText(label, w / 2, 220); g.font = '500 34px PlexMono'; g.fillText(sub, w / 2, 300); g.font = '400 30px Plex'; g.fillText('SPE cartridge', w / 2, 380); }) }));
+  lm.position.y = 3.6; grp.add(lm);
+  return grp;
+}
+function syringeFilter({ tint = 0xffffff, membrane = 0xf6f6f2, code = 'PTFE 0.22 µm' }) {
+  const grp = new THREE.Group();
+  const mat = new THREE.MeshPhysicalMaterial({ color: tint, roughness: 0.2, transmission: 0.85, thickness: 0.3, ior: 1.46, transparent: true, side: THREE.DoubleSide, clearcoat: 0.5 });
+  const R = 1.3;
+  const top = new THREE.Mesh(new THREE.CylinderGeometry(0.28, R, 0.32, 72), mat); top.position.y = 0.22;
+  const bot = new THREE.Mesh(new THREE.CylinderGeometry(R, 0.22, 0.28, 72), mat); bot.position.y = -0.2;
+  const rim = new THREE.Mesh(new THREE.CylinderGeometry(R + 0.04, R + 0.04, 0.14, 72), mat);
+  const mem = new THREE.Mesh(new THREE.CylinderGeometry(R * 0.92, R * 0.92, 0.02, 72), new THREE.MeshStandardMaterial({ color: membrane, roughness: 1 }));
+  const inlet = lathe([[0.18, 0.35], [0.3, 0.35], [0.3, 0.95], [0.42, 0.95], [0.42, 1.05], [0.18, 1.05]], mat);
+  const outlet = lathe([[0.06, -0.34], [0.14, -0.34], [0.09, -1.0], [0.04, -1.0]], mat);
+  [top, bot, rim, mem].forEach(m => { m.castShadow = true; grp.add(m); }); grp.add(inlet, outlet);
+  const lab = new THREE.Mesh(new THREE.CircleGeometry(0.62, 48), new THREE.MeshStandardMaterial({ transparent: true, roughness: 0.6, map: tex(256, 256, (g, w, h) => { g.fillStyle = INK; g.font = '600 34px Plex'; g.textAlign = 'center'; g.fillText(code.split(' ')[0], w / 2, 118); g.font = '500 28px PlexMono'; g.fillText(code.split(' ').slice(1).join(' '), w / 2, 160); }) }));
+  lab.rotation.x = -Math.PI / 2; lab.position.y = 0.39; grp.add(lab);
+  return grp;
+}
+function vial({ amber = false, cap = 0x2453b5 }) {
+  const grp = new THREE.Group(); const r = 0.6;
+  grp.add(lathe([[0.001, 0], [r - 0.06, 0], [r, 0.06], [r, 2.45], [0.46, 2.65], [0.44, 2.75], [0.44, 3.1], [0.3, 3.1]], glass(amber)));
+  const c = ridgedCap(0.52, 0.55, cap); c.position.y = 3.25; grp.add(c);
+  const sept = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 0.02, 40), plastic(0xd9a6a6, 0.6)); sept.position.y = 3.535; grp.add(sept);
+  if (!amber) { const lg = new THREE.CylinderGeometry(r * 1.01, r * 1.01, 1.3, 48, 1, true, -Math.PI * 0.4, Math.PI * 0.8); const lm = new THREE.Mesh(lg, new THREE.MeshStandardMaterial({ roughness: 0.8, color: 0xf2f2ee })); lm.position.y = 1.25; grp.add(lm); }
+  return grp;
+}
+function cassette({ code = 'AFB1', title = 'Aflatoxin B1' }) {
+  const grp = new THREE.Group(); const W = 2.2, L = 6.4, D = 0.42;
+  const body = new THREE.Mesh(new RoundedBoxGeometry(W, D, L, 4, 0.18), plastic(0xfafaf8, 0.55)); body.castShadow = true; body.receiveShadow = true; grp.add(body);
+  const face = tex(440, 1280, (g, w, h) => {
+    g.fillStyle = '#fafaf8'; g.fillRect(0, 0, w, h);
+    brandMark(g, w / 2 - 50, 70, 100);
+    g.fillStyle = INK; g.textAlign = 'center'; g.font = '700 64px Plex'; g.fillText(code, w / 2, 250);
+    g.font = '400 30px Plex'; g.fillStyle = '#56625c'; g.fillText(title, w / 2, 295);
+    // window
+    const wx = w / 2 - 55, wy = 380, ww = 110, wh = 360;
+    g.fillStyle = '#d9dcd8'; g.beginPath(); g.roundRect(wx - 14, wy - 14, ww + 28, wh + 28, 18); g.fill();
+    g.fillStyle = '#ffffff'; g.fillRect(wx, wy, ww, wh);
+    g.fillStyle = TEST; g.fillRect(wx + 8, wy + 100, ww - 16, 12); g.globalAlpha = 0.55; g.fillRect(wx + 8, wy + 210, ww - 16, 12); g.globalAlpha = 1;
+    g.fillStyle = '#56625c'; g.font = '600 34px Plex'; g.textAlign = 'right'; g.fillText('C', wx - 26, wy + 118); g.fillText('T', wx - 26, wy + 228);
+    // well
+    g.textAlign = 'center'; const cy = 1050;
+    g.fillStyle = '#d9dcd8'; g.beginPath(); g.arc(w / 2, cy, 80, 0, Math.PI * 2); g.fill();
+    g.fillStyle = '#efe9df'; g.beginPath(); g.arc(w / 2, cy, 60, 0, Math.PI * 2); g.fill();
+    g.fillStyle = '#56625c'; g.font = '600 34px Plex'; g.fillText('S', w / 2 + 130, cy + 12);
+  });
+  const top = new THREE.Mesh(new THREE.PlaneGeometry(W - 0.3, L - 0.3), new THREE.MeshStandardMaterial({ map: face, roughness: 0.55 }));
+  top.rotation.x = -Math.PI / 2; top.position.y = D / 2 + 0.002; grp.add(top);
+  return grp;
+}
+function kitBox({ title = 'Aflatoxin B1', sub = 'Rapid test kit', tests = '96 tests', code = 'AA-MY-AFB1', band = BRAND }) {
+  const W = 7.2, H = 5.0, Dp = 2.4;
+  const front = tex(1440, 1000, (g, w, h) => {
+    g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
+    g.fillStyle = band; g.fillRect(0, 0, w, 150);
+    brandMark(g, 70, 40, 140, '#ffffff');
+    g.fillStyle = '#fff'; g.font = '600 50px Plex'; g.fillText('ACURRIS ANALYTICAL', 250, 98);
+    g.fillStyle = INK; g.font = '700 ' + (title.length > 16 ? 104 : 124) + 'px Plex'; g.fillText(title, 80, 390);
+    g.font = '400 60px Plex'; g.fillStyle = '#26312c'; g.fillText(sub, 80, 480);
+    g.strokeStyle = INK; g.lineWidth = 5; g.strokeRect(80, 590, 340, 110); g.font = '600 54px Plex'; g.fillStyle = INK; g.fillText(tests, 112, 665);
+    g.fillStyle = band; g.fillRect(0, h - 120, w, 120);
+    g.fillStyle = '#ffffff'; g.font = '500 46px PlexMono'; g.fillText('REF ' + code, 80, h - 45);
+    g.strokeStyle = '#d7dcd9'; g.lineWidth = 4; g.beginPath(); g.moveTo(w - 420, 560); g.lineTo(w - 420, 760); g.stroke();
+    // strip glyph
+    g.fillStyle = '#eef1ef'; g.beginPath(); g.roundRect(w - 330, 470, 180, 340, 24); g.fill();
+    g.fillStyle = '#ffffff'; g.fillRect(w - 270, 530, 60, 150); g.fillStyle = TEST; g.fillRect(w - 266, 570, 52, 9); g.globalAlpha = .55; g.fillRect(w - 266, 620, 52, 9); g.globalAlpha = 1;
+  });
+  const side = tex(500, 1000, (g, w, h) => { g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h); g.fillStyle = band; g.fillRect(0, 0, w, 150); g.fillRect(0, h - 120, w, 120); g.save(); g.translate(w / 2 + 40, h - 170); g.rotate(-Math.PI / 2); g.fillStyle = INK; g.font = '700 84px Plex'; g.fillText(title, 0, 0); g.restore(); });
+  const topT = tex(1440, 500, (g, w, h) => { g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h); g.fillStyle = INK; g.font = '600 64px Plex'; g.fillText(title, 70, 290); brandMark(g, w - 230, 190, 150, band); });
+  const plain = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.55 });
+  const mats = [new THREE.MeshStandardMaterial({ map: side, roughness: 0.5 }), plain, new THREE.MeshStandardMaterial({ map: topT, roughness: 0.5 }), plain, new THREE.MeshStandardMaterial({ map: front, roughness: 0.45 }), plain];
+  const box = new THREE.Mesh(new THREE.BoxGeometry(W, H, Dp), mats); box.castShadow = true; box.position.y = H / 2;
+  const grp = new THREE.Group(); grp.add(box); return grp;
+}
+function dropper({ cap = 0xc62828, text = 'A' }) {
+  const grp = new THREE.Group();
+  grp.add(lathe([[0.001, 0], [0.85, 0], [0.9, 0.08], [0.9, 2.6], [0.7, 3.0], [0.4, 3.15], [0.4, 3.4]], plastic(0xf6f6f3, 0.35)));
+  grp.add(lathe([[0.001, 3.3], [0.48, 3.3], [0.48, 3.9], [0.2, 4.6], [0.06, 5.0], [0.001, 5.02]], plastic(cap, 0.4)));
+  const lg = new THREE.CylinderGeometry(0.905, 0.905, 1.7, 48, 1, true, -Math.PI * 0.45, Math.PI * 0.9);
+  const dl = new THREE.Mesh(lg, new THREE.MeshStandardMaterial({ roughness: 0.6, map: tex(512, 384, (g, w, h) => { g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h); g.fillStyle = BRAND; g.fillRect(0, 0, w, 40); g.fillStyle = INK; g.textAlign = 'center'; g.font = '700 120px Plex'; g.fillText(text, w / 2, 210); g.font = '400 36px Plex'; g.fillText('Reagent', w / 2, 290); }) })); dl.position.y = 1.35; grp.add(dl);
+  return grp;
+}
+function pouch({ title = 'EN 15662' }) {
+  const grp = new THREE.Group();
+  const m = new THREE.Mesh(new RoundedBoxGeometry(3.6, 5, 0.28, 3, 0.1), new THREE.MeshStandardMaterial({ color: 0xc9ccca, metalness: 0.85, roughness: 0.32 })); m.castShadow = true; grp.add(m);
+  const lab = new THREE.Mesh(new THREE.PlaneGeometry(3.0, 3.3), new THREE.MeshStandardMaterial({ roughness: 0.6, emissive: 0xffffff, emissiveIntensity: 0.35, map: tex(600, 660, (g, w, h) => { g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h); g.fillStyle = BRAND; g.fillRect(0, 0, w, 80); g.fillStyle = '#fff'; g.font = '600 32px Plex'; g.fillText('ACURRIS ANALYTICAL', 30, 52); g.fillStyle = INK; g.font = '700 70px Plex'; g.fillText('QuEChERS', 30, 200); g.font = '600 52px Plex'; g.fillText(title, 30, 280); g.font = '400 34px Plex'; g.fillStyle = '#3f4b46'; g.fillText('Extraction salts', 30, 350); g.fillText('Pre-weighed pouch', 30, 395); g.font = '500 32px PlexMono'; g.fillStyle = INK; g.fillText('50 pouches', 30, 600); }) }));
+  lab.material.emissiveMap = lab.material.map; lab.position.set(0, -0.3, 0.15); grp.add(lab); return grp;
+}
+
+const BUILD = { tube50, tube15, microtube, speCartridge, syringeFilter, vial, cassette, kitBox, dropper, pouch };
+
+window.renderScene = async function (spec) {
+  const w = spec.w || 1200, h = spec.h || 900;
+  setup(w, h);
+  const scene = new THREE.Scene(); scene.environment = envTex;
+  const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(-6, 14, 9); key.castShadow = true;
+  key.shadow.mapSize.set(2048, 2048); key.shadow.radius = 8; key.shadow.blurSamples = 20;
+  Object.assign(key.shadow.camera, { left: -20, right: 20, top: 20, bottom: -20, near: 1, far: 60 });
+  scene.add(key, new THREE.AmbientLight(0xffffff, 0.25));
+  const root = new THREE.Group(); scene.add(root);
+  for (const it of spec.items) {
+    const o = BUILD[it.type](it.opts || {});
+    if (it.pos) o.position.set(...it.pos);
+    if (it.rot) o.rotation.set(...it.rot.map(d => d * Math.PI / 180));
+    if (it.scale) o.scale.setScalar(it.scale);
+    o.traverse(m => { if (m.isMesh) m.castShadow = true; });
+    root.add(o);
+  }
+  const box = new THREE.Box3().setFromObject(root);
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.ShadowMaterial({ opacity: 0.16 }));
+  ground.rotation.x = -Math.PI / 2; ground.position.y = box.min.y; ground.receiveShadow = true; scene.add(ground);
+  const center = box.getCenter(new THREE.Vector3()); const size = box.getSize(new THREE.Vector3());
+  const cam = new THREE.PerspectiveCamera(spec.fov || 24, w / h, 0.1, 500);
+  const el = (spec.elev ?? 16) * Math.PI / 180, az = (spec.az ?? 0) * Math.PI / 180;
+  const radius = Math.max(size.x / (w / h), size.y, size.z * 0.6) / (2 * Math.tan(cam.fov * Math.PI / 360)) * (spec.pad || 1.35) + size.z / 2;
+  cam.position.set(center.x + Math.sin(az) * Math.cos(el) * radius, center.y + Math.sin(el) * radius, center.z + Math.cos(az) * Math.cos(el) * radius);
+  cam.lookAt(center.x, center.y + (spec.lookOffset || 0), center.z);
+  key.target = root;
+  renderer.render(scene, cam);
+  return renderer.domElement.toDataURL('image/png');
+};
+window.ready = true;
+</script>
+</body></html>

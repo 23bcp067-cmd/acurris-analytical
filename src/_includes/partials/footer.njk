@@ -1,0 +1,38 @@
+{%- set kits = categories | whereGroup("kits") %}
+{%- set prep = categories | whereGroup("prep") %}
+{%- macro footcol(heading, items) %}
+<div class="footer-col">
+  <h2 class="static-head">{{ heading }}</h2>
+  <details open data-footer-details>
+    <summary>{{ heading }} {% icon "chevron-down" %}</summary>
+    <ul>{% for it in items %}<li><a href="{{ it[1] }}">{{ it[0] }}</a></li>{% endfor %}</ul>
+  </details>
+</div>
+{%- endmacro %}
+<footer class="site-footer science-surface">
+  {% set scienceFieldVariant = "science-field--footer" %}
+  {% include "partials/science-field.njk" %}
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/" aria-label="Acurris Analytical home">{% include "partials/logo-mark.njk" %}<span class="brand-name">Acurris<span>Analytical</span></span></a>
+        <p>{{ site.tagline }}</p>
+        <ul class="contact-list" style="margin-top:16px">
+          {%- if site.address.length %}<li>{% icon "map-pin" %}<span>{{ site.address | join(", ") }}</span></li>{% endif %}
+          <li>{% icon "mail" %}<a href="mailto:{{ site.email }}" data-track="email_click">{{ site.email }}</a></li>
+          {%- if site.phone %}<li>{% icon "phone" %}<a href="tel:{{ site.phone }}" data-track="call_click">{{ site.phoneDisplay or site.phone }}</a></li>{% endif %}
+        </ul>
+      </div>
+      {%- set kitItems = [] %}{% for c in kits %}{% set kitItems = (kitItems.push([c.name, "/products/" + c.slug + "/"]), kitItems) %}{% endfor %}
+      {%- set prepItems = [] %}{% for c in prep %}{% set prepItems = (prepItems.push([c.name, "/products/" + c.slug + "/"]), prepItems) %}{% endfor %}
+      {{ footcol("Rapid test kits", kitItems) }}
+      {{ footcol("Sample preparation", prepItems) }}
+      {{ footcol("Solutions", [["Food testing labs","/solutions/food-testing-labs/"],["Dairy processors","/solutions/dairy/"],["Feed and poultry","/solutions/feed-and-poultry/"],["Evaluation pack","/evaluation-pack/"]]) }}
+      {{ footcol("Company", [["About","/about/"],["Resources","/resources/"],["Request a quote","/request-quote/"],["Privacy","/privacy/"],["Terms","/terms/"],["Cookies","/cookies/"]]) }}
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ build.year }} Acurris Analytical. {{ site.endorsement }}.{% if site.gst %} GSTIN {{ site.gst }}.{% endif %}</span>
+      <span><a href="/privacy/">Privacy</a> &middot; <a href="/terms/">Terms</a> &middot; <a href="/cookies/">Cookies</a> &middot; <a href="#" data-consent-open>Cookie settings</a></span>
+    </div>
+  </div>
+</footer>

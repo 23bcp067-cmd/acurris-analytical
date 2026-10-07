@@ -1,0 +1,174 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: categories
+  size: 1
+  alias: cat
+permalink: "/products/{{ cat.slug }}/"
+pageType: category
+eleventyComputed:
+  metaTitle: "{{ cat.metaTitle }}"
+  description: "{{ cat.metaDesc }}"
+  stickyCategory: "{{ cat.slug }}"
+---
+{%- import "partials/forms.njk" as forms with context %}
+{%- set groupName = "Rapid test kits" if cat.group == "kits" else "Sample preparation" %}
+<section class="page-hero">
+  <div class="container">
+    {% include "partials/breadcrumbs.njk" %}
+    <div class="hero-grid">
+    <div>
+    <div class="page-hero-icon">{% icon cat.icon %}</div>
+    <span class="eyebrow" style="margin-top:var(--space-md)">{{ groupName }}</span>
+    <h1>{{ cat.h1 }}</h1>
+    <p class="lead">{{ cat.summary }}</p>
+    <div class="category-cta">
+      <a class="btn btn--primary" href="/request-quote/?category={{ cat.slug }}" data-cta="category-hero">Request a quote</a>
+      {%- if cat.spec_pdf %}
+      <a class="btn btn--secondary" href="/assets/docs/{{ cat.spec_pdf }}" download data-track="spec_download" data-category="{{ cat.slug }}">{% icon "download" %} Download spec sheet (PDF)</a>
+      {%- else %}
+      <a class="btn btn--secondary" href="#spec-sheet">{% icon "file-text" %} Request spec sheet</a>
+      {%- endif %}
+      <a class="share-link" href="https://wa.me/?text={{ (cat.h1 + ' from Acurris Analytical: ' + site.url + page.url) | urlencode }}" rel="noopener" data-share>{% icon "share-2" %} Share with a colleague</a>
+    </div>
+    </div>
+    <div class="index-panel" aria-label="In this category">
+      <div class="index-panel-head"><span>In this category</span><span>{{ cat.types.length }} items</span></div>
+      <ul class="facts">
+        {%- for t in cat.types %}<li>{% icon "check" %}<span>{{ t.name }}</span></li>{% endfor %}
+      </ul>
+      <div class="index-panel-foot">{% icon "clock" %}<span>Quote and spec sheet within {{ site.supportHours }} hours</span></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>{{ cat.typesHeading }}</h2>
+    </div>
+    <div class="table-wrap">
+      <table class="spec-table">
+        <thead><tr><th scope="col">{{ "Product" if cat.group == "prep" else "Analyte" }}</th><th scope="col">Detail</th><th scope="col">{{ "Typical use" if cat.group == "prep" else "Commonly tested in" }}</th></tr></thead>
+        <tbody>
+          {%- for t in cat.types %}
+          <tr><th scope="row">{{ t.name }}</th><td data-label="Detail">{{ t.detail }}</td><td data-label="{{ 'Use' if cat.group == 'prep' else 'Tested in' }}">{{ t.use }}</td></tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% if cat.typesNote %}<p class="table-note">{{ cat.typesNote }}</p>{% endif %}
+  </div>
+</section>
+
+{%- if cat.methodFit %}
+<section class="section section--card">
+  <div class="container split split--wide-left">
+    <div>
+      <span class="eyebrow">Method fit</span>
+      <h2>Getting reliable results</h2>
+      <ol class="method-list">
+        {%- for p in cat.methodFit %}<li><p>{{ p }}</p></li>{% endfor %}
+      </ol>
+    </div>
+    <aside class="callout">
+      {% icon "message-circle" %}
+      <div>
+        <h3 class="h3" style="font-size:1.0625rem">Ask our technical team</h3>
+        <p>Send your method, matrix and the limit you test against. We reply within {{ site.supportHours }} hours with a recommendation, by email or video call.</p>
+        <p><a href="/request-quote/?category={{ cat.slug }}">Ask a technical question</a></p>
+      </div>
+    </aside>
+  </div>
+</section>
+{%- endif %}
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Supply and support</span>
+      <h2>What you get with every order</h2>
+    </div>
+    <div class="supply-grid">
+      <div class="supply-item">{% icon "map-pin" %}<h3>Stocked in India</h3><p>Held in stock here, so reorders do not wait on an import cycle.</p></div>
+      <div class="supply-item">{% icon "clock" %}<h3>{{ site.supportHours }}-hour technical reply</h3><p>Method and matrix questions answered by email or video call.</p></div>
+      <div class="supply-item">{% icon "clipboard-check" %}<h3>Setup guide with every kit</h3><p>Step-by-step instructions your team can follow at the bench or the collection point.</p></div>
+      <div class="supply-item">{% icon "package" %}<h3>Evaluation pack</h3><p>Test on your own samples first. The pack cost is credited to your first order.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--card" id="spec-sheet" aria-labelledby="spec-title">
+  <div class="container split">
+    <div>
+      <span class="eyebrow">Spec sheet</span>
+      <h2 id="spec-title">{{ cat.name }} specifications</h2>
+      {%- if cat.spec_pdf %}
+      <p>Download the spec sheet for formats, storage and pack sizes. Need a formal quotation as well?</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/assets/docs/{{ cat.spec_pdf }}" download data-track="spec_download" data-category="{{ cat.slug }}">{% icon "download" %} Download PDF</a>
+        <a class="btn btn--secondary" href="/request-quote/?category={{ cat.slug }}">Get a quote for {{ cat.name | lower }}</a>
+      </div>
+      {%- else %}
+      <p>We send spec sheets by email with the formats, storage conditions and pack sizes for this category. Tell us where to send it.</p>
+      <p class="muted small">Want a price at the same time? <a href="/request-quote/?category={{ cat.slug }}">Request a quote</a> instead and we'll include the spec sheet.</p>
+      {%- endif %}
+    </div>
+    {%- if not cat.spec_pdf %}
+    <div class="form-card">{{ forms.spec("spec", cat.slug, cat.name) }}</div>
+    {%- endif %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="pack-band">
+      <div>
+        <h2 class="h3">Try {{ cat.name | lower }} on your own samples</h2>
+        <p>Paid evaluation pack{% if site.evalPack.price %} at {{ site.evalPack.price }}{% endif %}, up to {{ site.evalPack.limitPerOrg }} per organization. The cost is credited against your first order.</p>
+      </div>
+      <a class="btn btn--primary" href="/evaluation-pack/?category={{ cat.slug }}">Request an evaluation pack</a>
+    </div>
+  </div>
+</section>
+
+{%- if cat.faq %}
+<section class="section section--card" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section-head"><h2 id="faq-title">Questions buyers ask</h2></div>
+    <div class="faq">
+      {%- for f in cat.faq %}
+      <details><summary>{{ f.q }} {% icon "chevron-down" %}</summary><div><p>{{ f.a }}</p></div></details>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+<section class="section">
+  <div class="container">
+    {%- set relArticles = [] %}
+    {%- for a in collections.articles %}{% if cat.articles.includes(a.fileSlug) %}{% set relArticles = (relArticles.push(a), relArticles) %}{% endif %}{% endfor %}
+    {%- if relArticles.length %}
+    <div class="section-head"><h2>Related guides</h2></div>
+    <div class="grid grid--3" style="margin-bottom:var(--space-2xl)">
+      {%- for a in relArticles %}
+      <article class="card card--link">
+        <span class="tag">Guide</span>
+        <h3><a class="stretched" href="{{ a.url }}" style="color:inherit;text-decoration:none">{{ a.data.title }}</a></h3>
+        <p>{{ a.data.description }}</p>
+        <span class="card-link" aria-hidden="true">Read the guide {% icon "arrow-right" %}</span>
+      </article>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+    <div class="section-head"><h2>Related categories</h2></div>
+    <div class="grid grid--3">
+      {%- for slug in cat.related %}{% set c = categories | findBySlug(slug) %}{% include "partials/card.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+{% set ctaHeading = "Get a quote for " + (cat.name | lower) %}
+{% include "partials/cta-band.njk" %}

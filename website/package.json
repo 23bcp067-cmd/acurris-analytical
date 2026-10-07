@@ -1,0 +1,19 @@
+{
+  "name": "acurris-analytical-site",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "lucide-static": "^1.51.0"
+  },
+  "type": "module",
+  "private": true
+}

@@ -1,0 +1,25 @@
+---
+layout: layouts/page.njk
+title: Resources
+metaTitle: "Food Safety Testing Guides | Acurris Analytical"
+description: "Practical guides to QuEChERS extraction, milk screening at collection, and mycotoxin sampling in feed, written for Indian labs, dairies and feed mills."
+eyebrow: Resources
+heading: Practical testing guides
+intro: "Short, practical notes on sampling, extraction and rapid screening, written for the people who run the tests."
+breadcrumbs:
+  - label: Resources
+---
+<section class="section">
+  <div class="container">
+    <div class="grid grid--3">
+      {%- for a in collections.articles %}
+      <article class="card card--link">
+        <span class="tag">Guide</span>
+        <h2 class="h3" style="margin-top:var(--space-sm)"><a class="stretched" href="{{ a.url }}" style="color:inherit;text-decoration:none">{{ a.data.title }}</a></h2>
+        <p>{{ a.data.description }}</p>
+        <span class="card-link" aria-hidden="true">Read the guide {% icon "arrow-right" %}</span>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

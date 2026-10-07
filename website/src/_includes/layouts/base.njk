@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- set pageTitle = metaTitle or (title + " | " + site.name if title else site.name) %}
+{%- set pageDesc = description or site.description %}
+<title>{{ pageTitle }}</title>
+<meta name="description" content="{{ pageDesc }}">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+{%- if noindex %}<meta name="robots" content="noindex, follow">{% endif %}
+<meta property="og:type" content="{{ 'article' if layout == 'layouts/article.njk' else 'website' }}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ pageTitle }}">
+<meta property="og:description" content="{{ pageDesc }}">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+<script>document.documentElement.classList.add('js');window.SITE={ga4:{{ site.ga4 | json | safe }}};</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":{{ site.name | json | safe }},"url":{{ site.url | json | safe }},"logo":"{{ site.url }}/assets/img/logo/logo-concept-a.svg","email":{{ site.email | json | safe }}{% if site.phone %},"telephone":{{ site.phone | json | safe }}{% endif %},"parentOrganization":{"@type":"Organization","name":"Acurris Biosystems"}}
+</script>
+{%- if breadcrumbs %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"}{% for b in breadcrumbs %},{"@type":"ListItem","position":{{ loop.index + 1 }},"name":{{ b.label | json | safe }}{% if b.url %},"item":"{{ site.url }}{{ b.url }}"{% endif %}}{% endfor %}]}
+</script>
+{%- endif %}
+{%- block head %}{% endblock %}
+</head>
+<body class="{{ bodyClass }}{% if not hideSticky %} has-sticky{% endif %}" data-page-type="{{ pageType or 'page' }}"{% if stickyCategory %} data-category="{{ stickyCategory }}"{% endif %}>
+<a class="skip-link" href="#main">Skip to content</a>
+{% if not minimalChrome %}{% include "partials/header.njk" %}{% else %}
+<header class="site-header"><div class="container header-inner"><a class="brand" href="/">{% include "partials/logo-mark.njk" %}<span class="brand-name">Acurris <span>Analytical</span></span></a></div></header>
+{% endif %}
+<main id="main">
+{{ content | safe }}
+</main>
+{% if not minimalChrome %}{% include "partials/footer.njk" %}{% endif %}
+{% if not hideSticky %}{% include "partials/sticky-bar.njk" %}{% endif %}
+{% include "partials/consent.njk" %}
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

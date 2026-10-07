@@ -1,0 +1,100 @@
+---
+layout: layouts/base.njk
+pageType: article
+---
+{%- set relCats = [] %}{% for s in relatedCategories %}{% set relCats = (relCats.push(categories | findBySlug(s)), relCats) %}{% endfor %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":{{ title | json | safe }},"description":{{ description | json | safe }},"datePublished":"{{ page.date | isoDate }}","author":{"@type":"Organization","name":"Acurris Analytical"},"publisher":{"@type":"Organization","name":"Acurris Analytical"},"mainEntityOfPage":"{{ site.url }}{{ page.url }}"}
+</script>
+<section class="page-head resources-detail-head science-surface">
+  {% set scienceFieldVariant = "science-field--resources" %}
+  {% include "partials/science-field.njk" %}
+  <div class="wrap">
+    {% include "partials/breadcrumbs.njk" %}
+    <div class="resources-detail-hero">
+      <div class="resources-detail-copy">
+        <p class="kicker">Technical guide</p>
+        <h1>{{ title }}</h1>
+        <p class="lead">{{ description }}</p>
+        <div class="article-meta">
+          {% if page.date %}<span>{{ page.date | readableDate }}</span>{% endif %}
+          <span>{{ content | readTime }} min read</span>
+        </div>
+      </div>
+
+      <div class="resources-detail-visual">
+        {% if relCats.length %}
+          {% set visualCat = relCats[0] %}
+          <img src="/assets/img/products/{{ visualCat.img }}-l.webp" srcset="/assets/img/products/{{ visualCat.img }}-m.webp 600w, /assets/img/products/{{ visualCat.img }}-l.webp 1200w" sizes="(min-width: 1024px) 45vw, 100vw" width="1200" height="900" alt="{{ title }} resource illustration">
+        {% else %}
+          <img src="/assets/img/products/cat-quechers-l.webp" srcset="/assets/img/products/cat-quechers-m.webp 600w, /assets/img/products/cat-quechers-l.webp 1200w" sizes="(min-width: 1024px) 45vw, 100vw" width="1200" height="900" alt="{{ title }} resource illustration">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section resource-reading-section">
+  <div class="wrap resource-reading-layout">
+    <article class="prose resources-article-content" aria-label="Article content">
+      {{ content | safe }}
+    </article>
+
+    <aside class="resources-side-panel" aria-label="Related products and support">
+      {% if relCats.length %}
+      <div class="resource-side-card">
+        <p class="eyebrow">Related products</p>
+        {% for c in relCats %}
+        <a class="resource-product-link" href="/products/{{ c.slug }}/">
+          <img src="/assets/img/products/{{ c.img }}-m.webp" width="600" height="450" alt="{{ c.name }} product category" loading="lazy">
+          <span>
+            <strong>{{ c.name }}</strong>
+            <small>{{ c.tag }}</small>
+          </span>
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="resource-side-card resource-side-cta">
+        <p class="eyebrow">Need support?</p>
+        <h3>Talk through the method or matrix.</h3>
+        <p>Tell us what you test and we will recommend the right product or screening setup.</p>
+        <a class="btn btn--primary btn--block" href="/request-quote/">Request a quote</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section resources-more-section" aria-labelledby="more-resources-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">More resources</p>
+        <h2 id="more-resources-title">Continue reading</h2>
+      </div>
+    </div>
+
+    <div class="resources-grid">
+      {% for a in collections.articles.slice(0, 3) %}
+        {% if a.url != page.url %}
+        <article class="resources-card">
+          <a class="resources-card-media" href="{{ a.url }}" aria-label="Read {{ a.data.title }}">
+            {% set nextCat = categories | findBySlug(a.data.relatedCategories[0]) %}
+            <img src="/assets/img/products/{{ nextCat.img }}-m.webp" width="800" height="620" alt="{{ a.data.title }} resource image" loading="lazy">
+          </a>
+          <div class="resources-card-body">
+            <span class="resource-tag mono">Technical guide</span>
+            <h3><a href="{{ a.url }}">{{ a.data.title }}</a></h3>
+            <p>{{ a.data.description }}</p>
+            {% if a.data.date %}<span class="resource-date mono">{{ a.data.date | readableDate }}</span>{% endif %}
+            <a class="arrow-link" href="{{ a.url }}">Read article {% icon "arrow-right" %}</a>
+          </div>
+        </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta-band.njk" %}

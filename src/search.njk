@@ -1,0 +1,5 @@
+---
+permalink: /search.json
+eleventyExcludeFromCollections: true
+---
+[{%- for c in categories %}{"t":{{ c.name | json | safe }},"r":{{ c.tag | json | safe }},"u":"/products/{{ c.slug }}/","i":"{{ c.img }}","k":{{ (c.h1 + ' ' + c.nav + ' ' + c.tag) | json | safe }}},{% for t in c.types %}{"t":{{ t.name | json | safe }},"r":"{{ t.ref }} · {{ c.name }}","u":"/products/{{ c.slug }}/#products","i":"{{ t.img }}","k":{{ (t.name + ' ' + t.detail + ' ' + t.use + ' ' + t.ref + ' ' + c.name) | json | safe }}}{% if not loop.last %},{% endif %}{% endfor %}{% if not loop.last %},{% endif %}{% endfor %}]

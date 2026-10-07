@@ -1,0 +1,121 @@
+{%- set kits = categories | whereGroup("kits") %}
+{%- set prep = categories | whereGroup("prep") %}
+<header class="site-header science-surface">
+  {% set scienceFieldVariant = "science-field--header" %}
+  {% include "partials/science-field.njk" %}
+  <div class="util">
+    <div class="wrap">
+      <ul>
+        <li>{% icon "clock" %}Technical reply within {{ site.supportHours }} hours</li>
+        <li>{% icon "package" %}<a href="/evaluation-pack/">Evaluation packs, credited to your first order</a></li>
+      </ul>
+      <ul>
+        <li>{% icon "mail" %}<a href="mailto:{{ site.email }}" data-track="email_click">{{ site.email }}</a></li>
+        {%- if site.phone %}<li>{% icon "phone" %}<a href="tel:{{ site.phone }}" data-track="call_click">{{ site.phoneDisplay or site.phone }}</a></li>{% endif %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="masthead">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Acurris Analytical home">
+        {% include "partials/logo-mark.njk" %}
+        <span class="brand-name">Acurris<span>Analytical</span></span>
+      </a>
+      <div class="search" role="search" data-search>
+        {% icon "search" %}
+        <label class="visually-hidden" for="q">Search products</label>
+        <input id="q" type="search" placeholder="Search by analyte, product or reference, e.g. aflatoxin, EN 15662" autocomplete="off" aria-controls="q-results" aria-expanded="false" data-search-input>
+        <ul class="search-results" id="q-results" role="listbox" hidden data-search-results></ul>
+      </div>
+      <div class="head-actions">
+        <button class="icon-btn search-toggle" type="button" aria-label="Search products" aria-expanded="false" aria-controls="mobile-search" data-search-toggle>{% icon "search" %}</button>
+        <a class="icon-btn" href="/request-quote/" aria-label="Quote list" data-quote-link>{% icon "clipboard-list" %}<span class="label">Quote list</span><span class="count" data-quote-count data-zero>0</span></a>
+        <a class="btn btn--primary" href="/request-quote/" data-cta="header">Request a quote</a>
+        <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu" data-drawer-toggle>
+          <span data-icon-open>{% icon "menu" %}</span><span data-icon-close hidden>{% icon "x" %}</span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-search" id="mobile-search" hidden>
+      <div class="search" role="search" data-search>
+        {% icon "search" %}
+        <label class="visually-hidden" for="q-m">Search products</label>
+        <input id="q-m" type="search" placeholder="Search analyte, product or reference" autocomplete="off" aria-controls="q-m-results" aria-expanded="false" data-search-input>
+        <ul class="search-results" id="q-m-results" role="listbox" hidden data-search-results></ul>
+      </div>
+    </div>
+  </div>
+
+  <nav class="catnav" aria-label="Main navigation">
+    <div class="wrap">
+      <ul class="primary-nav">
+        <li><a href="/"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a></li>
+        <li><button class="first" type="button" aria-expanded="false" aria-controls="mega-products" data-mega-toggle>Products {% icon "chevron-down" %}</button></li>
+        <li><button type="button" aria-expanded="false" aria-controls="mega-solutions" data-mega-toggle>Solutions {% icon "chevron-down" %}</button></li>
+        <li><a href="/resources/"{% if page.url.startsWith('/resources/') %} aria-current="page"{% endif %}>Resources</a></li>
+        <li><a href="/about/"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a></li>
+        <li><a href="mailto:{{ site.email }}" data-track="email_click">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  {%- macro megaList(list) %}
+  <ul>{% for c in list %}<li><a class="mega-link" href="/products/{{ c.slug }}/"><img src="/assets/img/products/{{ c.img }}-s.webp" width="64" height="48" alt="" loading="lazy"><span><strong>{{ c.name }}</strong><span class="ref">{{ c.tag }}</span></span></a></li>{% endfor %}</ul>
+  {%- endmacro %}
+  <div class="mega" id="mega-products" hidden>
+    <div class="wrap mega-inner mega-inner--products">
+      <div><h2>Rapid test kits</h2>{{ megaList(kits.slice(0, 4)) }}</div>
+      <div><h2>Sample preparation</h2>{{ megaList(prep.slice(0, 4)) }}</div>
+      <div class="mega-aside"><h3>Need a recommendation?</h3><p>Match the right product to your analyte, matrix and test limit. Our technical team responds within {{ site.supportHours }} hours.</p><a class="btn btn--primary btn--sm" href="/request-quote/">Request a quote</a></div>
+    </div>
+  </div>
+  <div class="mega" id="mega-solutions" hidden>
+    <div class="wrap mega-inner mega-inner--solutions">
+      <div><h2>By application</h2>
+        <ul>
+          <li><a class="mega-link" href="/solutions/food-testing-labs/"><img src="/assets/img/products/cat-quechers-s.webp" width="64" height="48" alt="" loading="lazy"><span><strong>Food testing labs</strong><span class="ref">QuEChERS · dSPE · SPE</span></span></a></li>
+          <li><a class="mega-link" href="/solutions/dairy/"><img src="/assets/img/products/cat-antibiotic-residues-s.webp" width="64" height="48" alt="" loading="lazy"><span><strong>Dairy processors</strong><span class="ref">Residues · adulterants</span></span></a></li>
+          <li><a class="mega-link" href="/solutions/feed-and-poultry/"><img src="/assets/img/products/cat-mycotoxins-s.webp" width="64" height="48" alt="" loading="lazy"><span><strong>Feed and poultry</strong><span class="ref">AFB1 · DON · ZEN · FUM</span></span></a></li>
+        </ul>
+      </div>
+      <div><h2>Technical resources</h2>
+        <ul>
+          {%- for a in collections.articles %}<li><a class="mega-link" href="{{ a.url }}" style="grid-template-columns:1fr"><span><strong>{{ a.data.title }}</strong></span></a></li>{% endfor %}
+        </ul>
+      </div>
+      <div class="mega-aside"><h3>Evaluation packs</h3><p>Sample our products before committing. The evaluation pack cost is credited to your first order.</p><a class="btn btn--secondary btn--sm" href="/evaluation-pack/">Learn more</a></div>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="wrap">
+    <ul class="drawer-menu">
+      <li><a href="/">Home{% icon "chevron-right" %}</a></li>
+      <li>
+        <details class="mobile-section" open>
+          <summary>Products</summary>
+          <ul>
+            {% for c in kits %}<li><a href="/products/{{ c.slug }}/">{{ c.name }}{% icon "chevron-right" %}</a></li>{% endfor %}
+            {% for c in prep %}<li><a href="/products/{{ c.slug }}/">{{ c.name }}{% icon "chevron-right" %}</a></li>{% endfor %}
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details class="mobile-section">
+          <summary>Solutions</summary>
+          <ul>
+            <li><a href="/solutions/food-testing-labs/">Food testing labs{% icon "chevron-right" %}</a></li>
+            <li><a href="/solutions/dairy/">Dairy processors{% icon "chevron-right" %}</a></li>
+            <li><a href="/solutions/feed-and-poultry/">Feed and poultry{% icon "chevron-right" %}</a></li>
+          </ul>
+        </details>
+      </li>
+      <li><a href="/resources/">Resources{% icon "chevron-right" %}</a></li>
+      <li><a href="/about/">About{% icon "chevron-right" %}</a></li>
+      <li><a href="mailto:{{ site.email }}">Contact{% icon "chevron-right" %}</a></li>
+    </ul>
+    <a class="btn btn--primary btn--block" href="/request-quote/">Request a quote</a>
+  </div>
+</div>

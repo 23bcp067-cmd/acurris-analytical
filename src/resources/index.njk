@@ -1,0 +1,118 @@
+---
+layout: layouts/base.njk
+title: Resources
+metaTitle: "Food Safety Testing Guides | Acurris Analytical"
+description: "Practical guides to QuEChERS extraction, milk screening at collection, and mycotoxin sampling in feed, written for Indian labs, dairies and feed mills."
+pageType: resources
+---
+{%- set featureArticle = collections.articles[0] %}
+
+<section class="resources-hero science-surface">
+  {% set scienceFieldVariant = "science-field--resources" %}
+  {% include "partials/science-field.njk" %}
+  <div class="wrap resources-hero-grid">
+    <div class="resources-hero-copy">
+      <p class="eyebrow">RESOURCES &amp; INSIGHTS</p>
+      <h1>Knowledge for Better Analytical Decisions</h1>
+      <p class="lead">Practical guidance on sampling, extraction and rapid screening for Indian labs, dairies and feed operations.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="#resource-library">Explore Resources</a>
+        <a class="btn btn--secondary" href="/request-quote/">Request a Quote</a>
+      </div>
+
+      <div class="trust-strip" aria-label="Resource support highlights">
+        <div class="trust-item">
+          <strong>Sampling guidance</strong>
+          <span>Sample prep that reduces common test error</span>
+        </div>
+        <div class="trust-item">
+          <strong>Extraction notes</strong>
+          <span>Formulation and cleanup decisions explained</span>
+        </div>
+        <div class="trust-item">
+          <strong>Rapid screening</strong>
+          <span>Decision support for routine quality checks</span>
+        </div>
+        <div class="trust-item">
+          <strong>Technical support</strong>
+          <span>Method-fit questions answered within {{ site.supportHours }} hours</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="resources-hero-visual">
+      <div class="resources-hero-stage">
+        <img src="/assets/img/products/cat-quechers-l.webp" srcset="/assets/img/products/cat-quechers-m.webp 600w, /assets/img/products/cat-quechers-l.webp 1200w" sizes="(min-width: 1024px) 46vw, 100vw" width="1200" height="900" alt="Analytical testing and sample preparation workflow" fetchpriority="high">
+      </div>
+      <div class="resources-hero-panel">
+        <p class="kicker">Knowledge library</p>
+        <strong>Practical analytical guidance</strong>
+        <p>Structured notes written for the people running the tests.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section resources-feature-section">
+  <div class="wrap">
+    <div class="resources-feature">
+      <a class="resources-feature-media" href="{{ featureArticle.url }}" aria-label="Read {{ featureArticle.data.title }}">
+        {% set featureCat = categories | findBySlug(featureArticle.data.relatedCategories[0]) %}
+        <img src="/assets/img/products/{{ featureCat.img }}-l.webp" srcset="/assets/img/products/{{ featureCat.img }}-m.webp 600w, /assets/img/products/{{ featureCat.img }}-l.webp 1200w" sizes="(min-width: 1024px) 52vw, 100vw" width="1200" height="900" alt="{{ featureArticle.data.title }} resource illustration">
+      </a>
+      <div class="resources-feature-copy">
+        <p class="eyebrow">Featured resource</p>
+        <h2><a href="{{ featureArticle.url }}">{{ featureArticle.data.title }}</a></h2>
+        <p>{{ featureArticle.data.description }}</p>
+        <div class="resources-feature-meta">
+          <span>Technical guide</span>
+          {% if featureArticle.data.date %}<span>{{ featureArticle.data.date | readableDate }}</span>{% endif %}
+        </div>
+        <a class="btn btn--primary" href="{{ featureArticle.url }}">Read Article</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="resource-library" aria-labelledby="resource-library-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Resource library</p>
+        <h2 id="resource-library-title">Practical guidance for analytical teams</h2>
+      </div>
+    </div>
+
+    <div class="resources-grid">
+      {%- for a in collections.articles %}
+      <article class="resources-card">
+        <a class="resources-card-media" href="{{ a.url }}" aria-label="Read {{ a.data.title }}">
+          {% set cardCat = categories | findBySlug(a.data.relatedCategories[0]) %}
+          <img src="/assets/img/products/{{ cardCat.img }}-m.webp" width="800" height="620" alt="{{ a.data.title }} resource image" loading="lazy">
+        </a>
+        <div class="resources-card-body">
+          <span class="resource-tag mono">Technical guide</span>
+          <h3><a href="{{ a.url }}">{{ a.data.title }}</a></h3>
+          <p>{{ a.data.description }}</p>
+          {% if a.data.date %}<span class="resource-date mono">{{ a.data.date | readableDate }}</span>{% endif %}
+          <a class="arrow-link" href="{{ a.url }}">Read article {% icon "arrow-right" %}</a>
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section resources-support-hook" aria-labelledby="support-hook-title">
+  <div class="wrap resources-support-hook-inner">
+    <div>
+      <p class="eyebrow">Need a product recommendation?</p>
+      <h2 id="support-hook-title">Looking for the right analytical product?</h2>
+    </div>
+    <div class="btn-row resources-support-actions">
+      <a class="btn btn--primary" href="/products/">Explore Products</a>
+      <a class="btn btn--secondary" href="/solutions/">Explore Solutions</a>
+      <a class="btn btn--secondary" href="/request-quote/">Request a Quote</a>
+    </div>
+  </div>
+</section>
