@@ -1,1 +1,0 @@
-{ "layout": "layouts/article.njk", "permalink": "/resources/{{ page.fileSlug }}/", "eleventyComputed": { "breadcrumbs": [ { "label": "Resources", "url": "/resources/" }, { "label": "{{ title }}" } ] } }

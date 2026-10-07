@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /api/
-Disallow: /thank-you/
-Disallow: /expo/
-
-Sitemap: https://acurrisanalytical.com/sitemap.xml

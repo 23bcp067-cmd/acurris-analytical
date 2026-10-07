@@ -1,8 +1,0 @@
-# Only lead.php is reachable from the web.
-Options -Indexes
-<FilesMatch ".*">
-  Require all denied
-</FilesMatch>
-<Files "lead.php">
-  Require all granted
-</Files>

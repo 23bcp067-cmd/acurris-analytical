@@ -6,3 +6,10 @@
 /.env.local
 /.vercel
 .vercel
+node_modules/
+_site/
+website/
+.env
+.env.*
+!.env.example
+*.log

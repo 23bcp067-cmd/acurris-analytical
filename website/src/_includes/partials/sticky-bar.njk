@@ -1,6 +1,0 @@
-<div class="sticky-bar" role="region" aria-label="Quick contact">
-  <a class="btn btn--primary" href="/request-quote/{% if stickyCategory %}?category={{ stickyCategory }}{% endif %}" data-cta="sticky">Get a quote</a>
-  {%- if site.phone %}<a class="btn btn--secondary btn--icon" href="tel:{{ site.phone }}" aria-label="Call us" data-track="call_click">{% icon "phone" %}</a>{% endif %}
-  {%- if site.whatsapp %}<a class="btn btn--secondary btn--icon" href="https://wa.me/{{ site.whatsapp }}?text={{ ('Hello Acurris Analytical, I have a question about ' + (stickyCategory or 'your products')) | urlencode }}" aria-label="Chat on WhatsApp" data-track="whatsapp_click" rel="noopener">{% icon "message-circle" %}</a>{% endif %}
-  <a class="btn btn--secondary btn--icon" href="mailto:{{ site.email }}" aria-label="Email us" data-track="email_click">{% icon "mail" %}</a>
-</div>
