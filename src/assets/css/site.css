@@ -3283,3 +3283,45 @@ body[data-page-type="home"] .science-object--dna circle:nth-of-type(2n) { animat
   body[data-page-type="home"] .science-particle,
   body[data-page-type="home"] .science-object circle { animation: none !important; }
 }
+
+/* Restore a bright white and pale-blue homepage palette. */
+body[data-page-type="home"] { background:#FFFFFF; color:#13233D; }
+body[data-page-type="home"] .site-header { background:#FFFFFF; border-color:#D9E8F5; }
+body[data-page-type="home"] .site-header > .util { background:#0B5CAD; border-color:rgba(255,255,255,.18); }
+body[data-page-type="home"] .site-header > .masthead,
+body[data-page-type="home"] .site-header > .catnav { background:#FFFFFF; }
+body[data-page-type="home"] .site-header .brand-name,
+body[data-page-type="home"] .site-header .brand-name span,
+body[data-page-type="home"] .site-header .catnav a,
+body[data-page-type="home"] .site-header .catnav button,
+body[data-page-type="home"] .site-header .head-actions .icon-btn { color:#102748; }
+body[data-page-type="home"] .site-header .brand::before { color:#0B5CAD; }
+body[data-page-type="home"] .site-header .catnav [aria-current="page"] { background:#EAF4FF; color:#0B5CAD; }
+body[data-page-type="home"] .home-hero { background:radial-gradient(ellipse at 77% 42%,rgba(93,183,255,.18),transparent 44%),linear-gradient(125deg,#EAF5FF 0%,#FFFFFF 56%,#EAF5FF 100%); }
+body[data-page-type="home"] .home-hero-copy h1 { color:#102748; }
+body[data-page-type="home"] .home-hero-copy h1 span { color:#0B5CAD; }
+body[data-page-type="home"] .home-hero-copy .eyebrow { color:#0B5CAD; }
+body[data-page-type="home"] .home-hero-copy .lead { color:#405571; }
+body[data-page-type="home"] .home-feature-strip { background:#EFF7FF; border-color:#D8E9F8; }
+body[data-page-type="home"] .home-feature-strip h3,
+body[data-page-type="home"] .home-feature-strip p { color:#142A49; }
+body[data-page-type="home"] .home-applications-section { background:#FFFFFF; }
+body[data-page-type="home"] .home-industry-card { background:#FFFFFF; border-color:#D8E7F4; box-shadow:0 8px 24px rgba(15,61,105,.09); }
+body[data-page-type="home"] .home-industry-body { background:#FFFFFF; color:#142A49; }
+body[data-page-type="home"] .home-industry-body h3 { color:#142A49; }
+body[data-page-type="home"] .home-industry-body > .icon { color:#0B5CAD; }
+body[data-page-type="home"] .home-value-section { background:#F1F7FD; }
+body[data-page-type="home"] .home-value-icon { background:#FFFFFF; border-color:#D8E9F8; color:#0B5CAD; }
+body[data-page-type="home"] .home-products-section,
+body[data-page-type="home"] .home-editorial-section,
+body[data-page-type="home"] .home-newsletter-section { background-color:#FFFFFF; background-image:radial-gradient(ellipse at 16% 8%,rgba(93,183,255,.12),transparent 38%),linear-gradient(135deg,#FFFFFF 0%,#F5FAFF 100%); }
+body[data-page-type="home"] .home-featured-solution,
+body[data-page-type="home"] .home-resources-section,
+body[data-page-type="home"] .home-cta-block { background-color:#F4F9FE; background-image:radial-gradient(ellipse at 88% 16%,rgba(93,183,255,.12),transparent 38%),linear-gradient(135deg,#F4F9FE 0%,#FFFFFF 100%); }
+body[data-page-type="home"] .home-final-cta,
+body[data-page-type="home"] .home-newsletter-section .home-newsletter { background:#FFFFFF; border-color:#D8E9F8; }
+body[data-page-type="home"] .site-footer { background:#F1F7FD; border-color:#D8E9F8; color:#18304F; }
+body[data-page-type="home"] .site-footer a,
+body[data-page-type="home"] .site-footer p,
+body[data-page-type="home"] .site-footer h2,
+body[data-page-type="home"] .site-footer h3 { color:#18304F; }
