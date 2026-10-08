@@ -9,22 +9,22 @@
 @font-face { font-family: "Plex Mono"; src: url("/assets/fonts/plex-mono-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
 
 :root {
-  --brand: #1d7a5b;
-  --brand-700: #155d45;
-  --brand-50: #ebf5f1;
-  --ink: #0f1720;
-  --ink-2: #1f2c36;
+  --brand: #0b5cad;
+  --brand-700: #073b73;
+  --brand-50: #eaf4ff;
+  --ink: #172033;
+  --ink-2: #253248;
   --ink-3: #5a6470;
-  --line: #e2e8e5;
-  --line-strong: #c7d0cb;
-  --well: #f4f7f5;
+  --line: #dce7f2;
+  --line-strong: #b9cce0;
+  --well: #f5faff;
   --bg: #ffffff;
-  --navy: #0f1720;
+  --navy: #073b73;
   --shadow-soft: 0 16px 32px rgba(15, 23, 32, 0.08);
   --test: #b0174f;
   --error: #b42318;
   --error-50: #fef3f2;
-  --ok: #1d7a5b;
+  --ok: #0b5cad;
 
   --sans: "Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --mono: "Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -234,13 +234,13 @@ table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nu
   border-bottom: 1px solid var(--line);
   box-shadow: 0 1px 0 rgba(15, 23, 32, 0.02);
 }
-.util { display: none; background: var(--well); border-bottom: 1px solid var(--line); font-size: 0.8125rem; color: var(--ink-2); }
+.util { display: none; background: #0b5cad; border-bottom: 1px solid #073b73; font-size: 0.8125rem; color: #fff; }
 .util .wrap { display: flex; justify-content: space-between; align-items: center; height: 34px; gap: 16px; }
 .util ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
 .util li { display: flex; align-items: center; gap: 6px; }
-.util .icon { width: 14px; height: 14px; color: var(--brand); }
-.util a { color: var(--ink-2); text-decoration: none; }
-.util a:hover { color: var(--brand); text-decoration: underline; }
+.util .icon { width: 14px; height: 14px; color: #d4eaff; }
+.util a { color: #fff; text-decoration: none; }
+.util a:hover { color: #d4eaff; text-decoration: underline; }
 .masthead .wrap { display: flex; align-items: center; gap: 16px; height: 64px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; flex: none; min-height: 44px; }
 .brand svg { width: 34px; height: 34px; }
@@ -465,11 +465,12 @@ body.drawer-open { overflow: hidden; }
 }
 
 .sec-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; margin-bottom: 28px; }
+.sec-head > div { min-width: 0; }
 .sec-head h2 { margin: 0; }
 .sec-head p { margin: 6px 0 0; color: var(--ink-3); max-width: 40rem; }
 
 .home-hero {
-  background: linear-gradient(180deg, #fff 0%, #f7faf8 100%);
+  background: linear-gradient(125deg, #f5faff 0%, #fff 58%, #eaf4ff 100%);
   border-bottom: 1px solid var(--line);
   padding-block: 32px 24px;
 }
@@ -477,8 +478,12 @@ body.drawer-open { overflow: hidden; }
   display: grid;
   gap: 28px;
   align-items: center;
+  min-width: 0;
 }
+.home-hero-copy h1 span { color: var(--brand); }
+.home-hero-copy .eyebrow { color: var(--brand-700); }
 .home-hero-copy { padding-top: 8px; }
+.home-hero-copy { min-width: 0; }
 .home-hero-copy h1 { max-width: 14ch; }
 .home-hero-copy .lead { margin-bottom: 28px; }
 .home-trust-grid {
@@ -507,12 +512,22 @@ body.drawer-open { overflow: hidden; }
   display: grid;
   gap: 16px;
 }
+.home-hero-gallery {
+  display: grid;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr) 86px;
+  gap: 10px;
+  min-width: 0;
+}
 .home-hero-media {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
   background: var(--well);
-  min-height: 360px;
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
 }
 .home-hero-media img {
   width: 100%;
@@ -520,6 +535,10 @@ body.drawer-open { overflow: hidden; }
   object-fit: cover;
   display: block;
 }
+.home-hero-support { display: grid; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 10px; min-width: 0; }
+.home-hero-support figure { position: relative; min-height: 0; margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #eaf4ff; }
+.home-hero-support img { width: 100%; height: 100%; object-fit: cover; }
+.home-hero-support figcaption { position: absolute; inset: auto 0 0; padding: 20px 8px 7px; background: linear-gradient(transparent, rgba(7, 59, 115, 0.8)); color: #fff; font-size: 0.7rem; line-height: 1.2; }
 .home-spotlight {
   position: relative;
   margin-top: -26px;
@@ -528,6 +547,7 @@ body.drawer-open { overflow: hidden; }
   border: 1px solid var(--line-strong);
   box-shadow: var(--shadow-soft);
   padding: 18px 18px 20px;
+  border-radius: 14px;
 }
 .home-spotlight h2 {
   margin-bottom: 8px;
@@ -555,6 +575,7 @@ body.drawer-open { overflow: hidden; }
   color: var(--ink);
   text-decoration: none;
   overflow: hidden;
+  border-radius: 14px;
   transition: transform .2s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease);
 }
 .home-product-card:hover {
@@ -566,7 +587,7 @@ body.drawer-open { overflow: hidden; }
   grid-column: span 2;
 }
 .home-product-card--feature .home-product-media {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
 }
 .home-product-media {
   display: block;
@@ -657,12 +678,15 @@ body.drawer-open { overflow: hidden; }
 
 .home-industry-grid {
   display: grid;
-  gap: 24px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
 }
 .home-industry-card {
   background: #fff;
   border: 1px solid var(--line);
   overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(7, 59, 115, 0.06);
   transition: transform .2s var(--ease), border-color .2s var(--ease);
 }
 .home-industry-card:hover {
@@ -671,13 +695,14 @@ body.drawer-open { overflow: hidden; }
 }
 .home-industry-card img {
   width: 100%;
-  height: 220px;
+  height: 168px;
   object-fit: cover;
   display: block;
 }
 .home-industry-body {
   padding: 18px 18px 20px;
 }
+.home-industry-card h3 { color: var(--brand-700); }
 .home-industry-body h3 {
   margin-bottom: 8px;
 }
@@ -730,7 +755,7 @@ body.drawer-open { overflow: hidden; }
 }
 
 .home-editorial-section {
-  background: linear-gradient(180deg, #fff 0%, #f2f6f3 100%);
+  background: linear-gradient(180deg, #fff 0%, #f5faff 100%);
 }
 .home-editorial-wrap {
   display: grid;
@@ -854,7 +879,7 @@ body.drawer-open { overflow: hidden; }
   .home-spotlight { margin-inline: 24px 0; }
   .home-product-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .home-product-card--feature { grid-column: span 2; }
-  .home-industry-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .home-industry-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .home-value-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .home-editorial-wrap { grid-template-columns: 0.9fr 1.1fr; }
   .home-resource-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -872,6 +897,12 @@ body.drawer-open { overflow: hidden; }
   .home-solution-grid { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 639px) {
+  .home-hero-grid { gap: 20px; }
+  .home-hero-gallery { grid-template-columns: minmax(0, 1fr) 64px; gap: 7px; }
+  .home-hero-support { gap: 7px; }
+  .home-hero-support figcaption { font-size: 0.625rem; padding-inline: 6px; }
+  .home-hero-media { border-radius: 14px; }
+  .home-spotlight { margin-inline: 10px; }
   .home-solution-media {
     min-height: 0;
     height: 320px;
@@ -2653,6 +2684,59 @@ body.has-sticky { --sticky-h: 66px; }
   50% { transform: translate3d(7px, -5px, 0); }
 }
 
+/* Blue scientific theme for the existing site components. */
+.util { background: #0b5cad; border-color: #073b73; color: #fff; }
+.util .icon { color: #d4eaff; }
+.util a { color: #fff; }
+.util a:hover { color: #d4eaff; }
+.catnav a[aria-current="page"],
+.catnav a:hover,
+.catnav button:hover,
+.catnav [aria-expanded="true"] { color: var(--brand); }
+.home-products-section,
+.home-applications-section,
+.home-resources-section { background-color: #fff; }
+.home-featured-solution,
+.home-value-section,
+.home-newsletter-section { background-color: #f5faff; }
+.home-industry-body .kicker { color: var(--brand); }
+.home-industry-card { box-shadow: 0 8px 24px rgba(7, 59, 115, 0.07); }
+.home-industry-card:hover { box-shadow: 0 14px 30px rgba(7, 59, 115, 0.12); }
+.science-field,
+.science-field--hero,
+.science-field--products,
+.science-field--solutions,
+.science-field--resources,
+.science-field--quiet,
+.science-field--header { color: rgba(11, 92, 173, 0.3); }
+.science-field::before {
+  background-image: linear-gradient(rgba(11, 92, 173, 0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(11, 92, 173, 0.045) 1px, transparent 1px);
+}
+.science-field::after {
+  background: radial-gradient(ellipse at 10% 18%, rgba(11, 92, 173, 0.09), transparent 34%), radial-gradient(ellipse at 90% 78%, rgba(84, 160, 224, 0.09), transparent 32%);
+}
+.science-field--hero { color: rgba(11, 92, 173, 0.38); }
+.science-field--hero::before { background-image: linear-gradient(rgba(11, 92, 173, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(11, 92, 173, 0.06) 1px, transparent 1px); }
+.science-field--hero::after { background: radial-gradient(ellipse at 5% 12%, rgba(84, 160, 224, 0.13), transparent 34%), radial-gradient(ellipse at 96% 26%, rgba(11, 92, 173, 0.1), transparent 35%), radial-gradient(ellipse at 52% 100%, rgba(173, 214, 249, 0.16), transparent 48%); }
+.science-object { filter: drop-shadow(0 3px 6px rgba(7, 59, 115, 0.05)); }
+.science-object--capsule { background: linear-gradient(90deg, rgba(11, 92, 173, 0.14) 0 48%, rgba(255,255,255,0.75) 48% 52%, rgba(255,255,255,0.82) 52% 100%); }
+.science-field--dark,
+.science-field--footer { color: rgba(166, 211, 251, 0.68); }
+.home-final-cta .science-field { color: rgba(166, 211, 251, 0.42); }
+.science-field--dark .science-object--molecule,
+.science-field--dark .science-object--dna { filter: drop-shadow(0 0 8px rgba(84, 160, 224, 0.2)); }
+
+@media (max-width: 639px) {
+  .science-field--hero { opacity: 0.34; }
+  .science-field--products,
+  .science-field--solutions,
+  .science-field--resources { opacity: 0.22; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .science-object,
+  .science-particle { animation: none !important; }
+}
+
 .site-header.science-surface { isolation: isolate; }
 .site-header > .util,
 .site-header > .masthead,
@@ -2738,3 +2822,464 @@ body.has-sticky { --sticky-h: 66px; }
 }
 @media print { .site-header, .sticky-bar, .consent-banner, .cta-band, .site-footer { display: none !important; } }
 @media (min-width: 1024px) { .icon-btn .count { position: static; margin-left: 2px; } }
+
+/* Homepage screenshot composition. These overrides are deliberately scoped to
+   the existing home page so the rest of the site keeps its current layout. */
+body[data-page-type="home"] #main { display: flex; flex-direction: column; }
+body[data-page-type="home"] .home-hero { order: 1; padding-block: 24px; background: linear-gradient(115deg,#d8edff 0%,#f5faff 42%,#d8edff 100%); border: 0; }
+body[data-page-type="home"] .home-feature-strip { order: 2; }
+body[data-page-type="home"] .home-applications-section { order: 3; }
+body[data-page-type="home"] .home-value-section { order: 4; }
+body[data-page-type="home"] .home-products-section { order: 5; }
+body[data-page-type="home"] .home-featured-solution { order: 6; }
+body[data-page-type="home"] .home-editorial-section { order: 7; }
+body[data-page-type="home"] .home-resources-section { order: 8; }
+body[data-page-type="home"] .home-cta-block { order: 9; }
+body[data-page-type="home"] .home-newsletter-section { order: 10; }
+
+body[data-page-type="home"] .home-hero-grid { grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr); gap:24px; }
+body[data-page-type="home"] .home-hero-copy { padding:12px 0; }
+body[data-page-type="home"] .home-hero-copy .eyebrow { color:#0755a5; letter-spacing:.2em; font-size:.78rem; }
+body[data-page-type="home"] .home-hero-copy h1 { max-width: none; font-size:clamp(2.55rem,3.15vw,3.25rem); line-height:1.08; letter-spacing:-.035em; color:#071b39; }
+body[data-page-type="home"] .home-hero-copy h1 span { color:#0755a5; }
+body[data-page-type="home"] .home-hero-copy .lead { max-width:39rem; margin:16px 0 22px; color:#17304f; font-size:1.08rem; line-height:1.55; }
+body[data-page-type="home"] .home-hero-copy .btn-row { gap:16px; }
+body[data-page-type="home"] .home-hero-copy .btn { min-height:54px; padding-inline:27px; border-radius:14px; }
+body[data-page-type="home"] .home-hero-feature { display:block; min-width:0; }
+body[data-page-type="home"] .home-hero-collage { position:relative; display:grid; grid-template-columns:1.34fr .76fr .92fr; grid-template-rows:1fr 1fr; gap:10px; height:400px; padding:0 4px; }
+body[data-page-type="home"] .home-collage-photo { min-width:0; min-height:0; margin:0; overflow:hidden; border:1px solid rgba(255,255,255,.82); border-radius:14px; background:#d6eaff; box-shadow:0 5px 16px rgba(13,75,130,.1); }
+body[data-page-type="home"] .home-collage-photo img { display:block; width:100%; height:100%; object-fit:cover; }
+body[data-page-type="home"] .home-collage-photo--scientist { grid-column:1; grid-row:1 / 3; }
+body[data-page-type="home"] .home-collage-photo--glass { grid-column:2; grid-row:1; }
+body[data-page-type="home"] .home-collage-photo--vials { grid-column:3; grid-row:1; }
+body[data-page-type="home"] .home-collage-photo--food { grid-column:2; grid-row:2; }
+body[data-page-type="home"] .home-collage-photo--dairy { grid-column:3; grid-row:2; }
+body[data-page-type="home"] .home-collage-callout { position:absolute; z-index:1; display:flex; align-items:center; gap:12px; max-width:245px; min-height:70px; padding:11px 16px; border:1px solid #e2effb; border-radius:14px; background:#fff; color:#071b39; box-shadow:0 10px 28px rgba(5,52,99,.17); text-decoration:none; }
+body[data-page-type="home"] .home-collage-callout--top { top:4px; right:0; }
+body[data-page-type="home"] .home-collage-callout--bottom { bottom:8px; left:-24px; }
+body[data-page-type="home"] .home-collage-callout-icon { display:grid; place-items:center; flex:none; width:42px; height:42px; border-radius:50%; background:#e6f3ff; color:#0755a5; }
+body[data-page-type="home"] .home-collage-callout-icon .icon { width:25px; height:25px; }
+body[data-page-type="home"] .home-collage-callout strong, body[data-page-type="home"] .home-collage-callout small { display:block; }
+body[data-page-type="home"] .home-collage-callout strong { font-size:.85rem; }
+body[data-page-type="home"] .home-collage-callout small { margin-top:3px; font-size:.73rem; }
+
+body[data-page-type="home"] .home-feature-strip { padding:12px 0; background:#f0f7ff; border-block:1px solid #e4effb; }
+body[data-page-type="home"] .home-feature-strip-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); }
+body[data-page-type="home"] .home-feature-item { display:flex; align-items:center; gap:13px; min-width:0; padding:0 16px; border-right:1px solid #dce9f6; color:#071b39; }
+body[data-page-type="home"] .home-feature-item:last-child { border-right:0; }
+body[data-page-type="home"] .home-feature-item > .icon { box-sizing:content-box; flex:none; width:25px; height:25px; padding:13px; border-radius:50%; color:#0755a5; background:#dceeff; }
+body[data-page-type="home"] .home-feature-item strong, body[data-page-type="home"] .home-feature-item small { display:block; }
+body[data-page-type="home"] .home-feature-item strong { font-size:.88rem; line-height:1.25; }
+body[data-page-type="home"] .home-feature-item small { margin-top:4px; color:#293c55; font-size:.78rem; }
+
+body[data-page-type="home"] .home-applications-section { padding-block:30px 32px; background:#fff; }
+body[data-page-type="home"] .home-applications-section > .science-field { display:none; }
+body[data-page-type="home"] .home-applications-section .sec-head { align-items:center; margin-bottom:17px; }
+body[data-page-type="home"] .home-applications-section .sec-head .eyebrow,
+body[data-page-type="home"] .home-value-section .eyebrow { color:#0755a5; font-size:.75rem; letter-spacing:.18em; font-weight:700; }
+body[data-page-type="home"] .home-applications-section .sec-head h2,
+body[data-page-type="home"] .home-value-section .sec-head h2 { color:#071b39; font-size:1.55rem; letter-spacing:-.025em; }
+body[data-page-type="home"] .home-applications-link { display:inline-flex; align-items:center; gap:10px; padding:10px 18px; border:1px solid #8ab2d8; border-radius:12px; color:#0755a5; font-size:.82rem; font-weight:600; text-decoration:none; }
+body[data-page-type="home"] .home-applications-link .icon { width:16px; height:16px; }
+body[data-page-type="home"] .home-industry-grid { grid-template-columns:repeat(6,minmax(0,1fr)); gap:14px; }
+body[data-page-type="home"] .home-industry-card { border:1px solid #e4edf6; border-radius:12px; box-shadow:0 3px 9px rgba(14,69,123,.09); }
+body[data-page-type="home"] .home-industry-card img { height:90px; object-fit:cover; }
+body[data-page-type="home"] .home-industry-body { display:flex; align-items:center; gap:8px; min-height:42px; padding:8px 12px; color:#071b39; text-decoration:none; }
+body[data-page-type="home"] .home-industry-body h3 { margin:0; color:#071b39; font-size:.78rem; line-height:1.2; }
+body[data-page-type="home"] .home-industry-body > .icon { flex:none; width:15px; height:15px; margin-left:auto; color:#0755a5; }
+
+body[data-page-type="home"] .home-value-section { padding-block:25px; background:#f2f8ff; }
+body[data-page-type="home"] .home-value-section > .science-field { display:none; }
+body[data-page-type="home"] .home-value-section > .wrap { display:grid; grid-template-columns:minmax(300px,1.08fr) minmax(0,2.25fr); gap:24px; align-items:center; }
+body[data-page-type="home"] .home-value-section .sec-head { margin:0; }
+body[data-page-type="home"] .home-value-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; }
+body[data-page-type="home"] .home-value-item { display:grid; grid-template-columns:60px minmax(0,1fr); grid-template-rows:auto auto; align-items:center; column-gap:12px; padding:5px 16px; border:0; border-right:1px solid #dce9f6; background:transparent; }
+body[data-page-type="home"] .home-value-item:last-child { border-right:0; }
+body[data-page-type="home"] .home-value-icon { grid-row:1 / 3; display:grid; width:60px; height:60px; margin:0; border:0; background:#fff; color:#0755a5; box-shadow:0 2px 7px rgba(14,69,123,.08); }
+body[data-page-type="home"] .home-value-icon .icon { width:31px; height:31px; }
+body[data-page-type="home"] .home-value-item h3 { margin:0; color:#071b39; font-size:.78rem; line-height:1.3; }
+body[data-page-type="home"] .home-value-item p { margin:3px 0 0; color:#293c55; font-size:.72rem; line-height:1.35; }
+
+@media (min-width:1200px) {
+  body[data-page-type="home"] .site-header > .util { display:block; height:34px; background:#0755a5; border:0; }
+  body[data-page-type="home"] .site-header .util .wrap { height:34px; }
+  body[data-page-type="home"] .site-header .util ul:first-child { display:none; }
+  body[data-page-type="home"] .site-header .util ul:nth-child(2) { margin-right:auto; }
+  body[data-page-type="home"] .site-header .home-utility-links { gap:13px; margin-left:auto; }
+  body[data-page-type="home"] .site-header .home-utility-links li+li { padding-left:13px; border-left:1px solid rgba(255,255,255,.55); }
+  body[data-page-type="home"] .site-header .home-utility-links .icon { width:16px; height:16px; }
+  body[data-page-type="home"] .site-header > .masthead { position:relative; z-index:4; }
+  body[data-page-type="home"] .site-header .masthead .wrap { height:78px; justify-content:space-between; }
+  body[data-page-type="home"] .site-header .brand { z-index:4; }
+  body[data-page-type="home"] .site-header .brand svg { width:48px; height:48px; }
+  body[data-page-type="home"] .site-header .brand-name { font-size:1.35rem; color:#0755a5; }
+  body[data-page-type="home"] .site-header .brand-name span { color:#17304f; }
+  body[data-page-type="home"] .site-header .masthead .search,
+  body[data-page-type="home"] .site-header .head-actions .search-toggle,
+  body[data-page-type="home"] .site-header .head-actions [data-quote-link] { display:none !important; }
+  body[data-page-type="home"] .site-header .head-actions { z-index:4; }
+  body[data-page-type="home"] .site-header .head-actions .btn--primary { display:inline-flex; padding:12px 23px; border-radius:13px; }
+  body[data-page-type="home"] .site-header > .catnav { position:absolute; z-index:3; top:34px; right:0; left:0; display:block; height:78px; border:0; pointer-events:none; }
+  body[data-page-type="home"] .site-header .catnav .wrap { justify-content:center; height:78px; }
+  body[data-page-type="home"] .site-header .primary-nav { height:100%; gap:5px; pointer-events:auto; }
+  body[data-page-type="home"] .site-header .catnav a,
+  body[data-page-type="home"] .site-header .catnav button { padding:0 15px; border:0; border-radius:24px; font-size:.84rem; font-weight:600; }
+  body[data-page-type="home"] .site-header .catnav [aria-current="page"] { background:#eff7ff; color:#0755a5; }
+}
+@media (min-width:768px) and (max-width:1199px) {
+  body[data-page-type="home"] .home-hero-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+  body[data-page-type="home"] .home-hero-collage { height:350px; }
+  body[data-page-type="home"] .home-feature-strip-grid { grid-template-columns:repeat(3,minmax(0,1fr)); row-gap:14px; }
+  body[data-page-type="home"] .home-feature-item:nth-child(3) { border-right:0; }
+  body[data-page-type="home"] .home-industry-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  body[data-page-type="home"] .home-value-section > .wrap { grid-template-columns:1fr; gap:16px; }
+  body[data-page-type="home"] .home-value-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+}
+@media (max-width:767px) {
+  body[data-page-type="home"] .home-hero { padding-block:28px 24px; }
+  body[data-page-type="home"] .home-hero-grid { grid-template-columns:1fr; gap:22px; }
+  body[data-page-type="home"] .home-hero-copy h1 { font-size:clamp(2.25rem,8vw,3rem); }
+  body[data-page-type="home"] .home-hero-collage { grid-template-columns:1.15fr .85fr; grid-template-rows:repeat(3,105px); height:auto; padding:0; }
+  body[data-page-type="home"] .home-collage-photo--scientist { grid-column:1; grid-row:1 / 4; }
+  body[data-page-type="home"] .home-collage-photo--glass { grid-column:2; grid-row:1; }
+  body[data-page-type="home"] .home-collage-photo--vials { grid-column:2; grid-row:2; }
+  body[data-page-type="home"] .home-collage-photo--food { grid-column:2; grid-row:3; }
+  body[data-page-type="home"] .home-collage-photo--dairy { display:none; }
+  body[data-page-type="home"] .home-collage-callout { display:none; }
+  body[data-page-type="home"] .home-feature-strip-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 0; }
+  body[data-page-type="home"] .home-feature-item { padding:0 8px; border:0; }
+  body[data-page-type="home"] .home-feature-item > .icon { width:19px; height:19px; padding:10px; }
+  body[data-page-type="home"] .home-feature-item strong { font-size:.76rem; }
+  body[data-page-type="home"] .home-feature-item small { font-size:.68rem; }
+  body[data-page-type="home"] .home-industry-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  body[data-page-type="home"] .home-industry-card img { height:100px; }
+  body[data-page-type="home"] .home-industry-body { padding:8px; }
+  body[data-page-type="home"] .home-industry-body h3 { font-size:.72rem; }
+  body[data-page-type="home"] .home-value-section > .wrap { grid-template-columns:1fr; gap:16px; }
+  body[data-page-type="home"] .home-value-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 0; }
+  body[data-page-type="home"] .home-value-item { grid-template-columns:44px minmax(0,1fr); padding:4px 8px; }
+  body[data-page-type="home"] .home-value-icon { width:42px; height:42px; }
+  body[data-page-type="home"] .home-value-icon .icon { width:23px; height:23px; }
+  body[data-page-type="home"] .home-value-item h3 { font-size:.72rem; }
+  body[data-page-type="home"] .home-value-item p { font-size:.66rem; }
+}
+@media (max-width:420px) {
+  body[data-page-type="home"] .home-feature-item { gap:8px; }
+  body[data-page-type="home"] .home-feature-item > .icon { width:16px; height:16px; padding:8px; }
+  body[data-page-type="home"] .home-feature-item strong { font-size:.69rem; }
+  body[data-page-type="home"] .home-feature-item small { font-size:.62rem; }
+}
+
+/* Keep the existing transparent product photography crisp and comfortably sized. */
+body[data-page-type="home"] .home-hero { overflow:hidden; background:radial-gradient(ellipse at 78% 42%,rgba(255,255,255,.94) 0%,rgba(255,255,255,.08) 40%,transparent 63%),linear-gradient(120deg,#d8edff 0%,#f4faff 47%,#d8edff 100%); }
+body[data-page-type="home"] .home-hero .science-field--hero { color:rgba(20,105,185,.28); }
+body[data-page-type="home"] .home-hero .science-field--hero::before { background-image:linear-gradient(rgba(17,99,178,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(17,99,178,.045) 1px,transparent 1px); }
+body[data-page-type="home"] .home-hero .science-field--hero::after { background:radial-gradient(circle at 14% 33%,rgba(255,255,255,.7),transparent 18%),radial-gradient(circle at 91% 71%,rgba(91,171,235,.14),transparent 24%); }
+body[data-page-type="home"] .home-hero-collage { align-items:stretch; }
+body[data-page-type="home"] .home-collage-photo { display:grid; place-items:center; background:linear-gradient(145deg,#fff 0%,#f2f8ff 100%); border-color:rgba(255,255,255,.92); box-shadow:0 8px 22px rgba(18,78,132,.12),inset 0 0 0 1px rgba(46,127,198,.06); }
+body[data-page-type="home"] .home-collage-photo img { width:100%; height:100%; padding:10px; object-fit:contain; filter:drop-shadow(0 5px 7px rgba(25,66,103,.12)); }
+body[data-page-type="home"] .home-collage-photo--scientist { background:linear-gradient(155deg,#fff 0%,#e8f5ff 100%); }
+body[data-page-type="home"] .home-collage-photo--scientist img { padding:0; object-fit:cover; object-position:80% center; transform:scale(1.04); filter:none; }
+body[data-page-type="home"] .home-collage-photo--glass img,
+body[data-page-type="home"] .home-collage-photo--vials img,
+body[data-page-type="home"] .home-collage-photo--food img,
+body[data-page-type="home"] .home-collage-photo--dairy img { padding:17px; }
+body[data-page-type="home"] .home-collage-photo--food img { padding:15px; }
+body[data-page-type="home"] .home-collage-callout { border-color:rgba(205,226,246,.95); }
+body[data-page-type="home"] .home-collage-callout-icon { background:linear-gradient(145deg,#eaf6ff,#d6ecff); }
+body[data-page-type="home"] .home-feature-strip { box-shadow:0 2px 12px rgba(25,83,137,.04); }
+body[data-page-type="home"] .home-industry-card img { object-position:center; }
+
+/* The insights area carries the same calm, moving science texture as the hero. */
+body[data-page-type="home"] .home-resources-section { overflow:hidden; padding-block:clamp(44px,6vw,76px); background:radial-gradient(ellipse at 7% 18%,rgba(198,229,255,.62),transparent 31%),radial-gradient(ellipse at 92% 82%,rgba(211,237,255,.72),transparent 34%),linear-gradient(135deg,#f4faff 0%,#fff 48%,#eff7ff 100%); }
+body[data-page-type="home"] .home-resources-section > .science-field { opacity:.68; }
+body[data-page-type="home"] .home-resources-section .science-field--resources { color:rgba(24,110,185,.42); }
+body[data-page-type="home"] .home-resources-section .science-field--resources::before { background-image:linear-gradient(rgba(29,112,186,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(29,112,186,.055) 1px,transparent 1px); background-size:38px 38px; mask-image:radial-gradient(ellipse at 50% 48%,#000 8%,transparent 87%); }
+body[data-page-type="home"] .home-resources-section .science-field--resources::after { background:radial-gradient(ellipse at 10% 20%,rgba(104,180,240,.24),transparent 32%),radial-gradient(ellipse at 88% 74%,rgba(132,199,249,.22),transparent 33%); }
+body[data-page-type="home"] .home-resources-section .science-field--resources .science-object--molecule { left:1%; top:9%; width:150px; opacity:.62; }
+body[data-page-type="home"] .home-resources-section .science-field--resources .science-object--chromatogram { right:2%; top:17%; width:220px; opacity:.22; }
+body[data-page-type="home"] .home-resources-section .science-field--resources .science-object--dna { display:block; left:71%; bottom:7%; width:190px; opacity:.2; }
+body[data-page-type="home"] .home-resources-section .science-field--resources .science-object--flask { display:block; top:18%; right:15%; width:76px; opacity:.22; }
+body[data-page-type="home"] .home-resources-section .science-field--resources .science-object--tube { display:block; top:26%; left:39%; width:46px; height:145px; opacity:.17; }
+body[data-page-type="home"] .home-resources-section .science-field--resources .science-object--wave { bottom:-3%; height:20%; opacity:.24; }
+body[data-page-type="home"] .home-resources-section .science-field--resources .science-object--molecule,
+body[data-page-type="home"] .home-resources-section .science-field--resources .science-object--dna { filter:drop-shadow(0 4px 10px rgba(34,112,177,.1)); }
+body[data-page-type="home"] .home-resources-section .science-field--resources .science-particle { display:block; background:#4b9bdd; opacity:.48; }
+body[data-page-type="home"] .home-resources-section .sec-head { align-items:center; margin-bottom:26px; }
+body[data-page-type="home"] .home-resources-section .sec-head .eyebrow { color:#0755a5; font-weight:700; letter-spacing:.16em; }
+body[data-page-type="home"] .home-resources-section .sec-head h2 { color:#0b1e3b; font-size:clamp(1.55rem,2.3vw,2rem); }
+body[data-page-type="home"] .home-resources-section .arrow-link { display:inline-flex; align-items:center; gap:8px; padding:11px 16px; border:1px solid #9dbfdf; border-radius:12px; background:rgba(255,255,255,.72); color:#0755a5; text-decoration:none; }
+body[data-page-type="home"] .home-resource-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; align-items:stretch; }
+body[data-page-type="home"] .home-resource-card { height:100%; overflow:hidden; border:1px solid rgba(190,216,240,.9); border-radius:16px; background:rgba(255,255,255,.96); box-shadow:0 12px 32px rgba(19,74,125,.09); transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease; }
+body[data-page-type="home"] .home-resource-card:hover { transform:translateY(-4px); border-color:#9fc6e9; box-shadow:0 18px 38px rgba(19,74,125,.14); }
+body[data-page-type="home"] .home-resource-link { height:100%; grid-template-rows:auto auto auto 1fr auto; gap:0; }
+body[data-page-type="home"] .home-resource-media { display:block; background:linear-gradient(145deg,#eaf5ff,#f8fbff); }
+body[data-page-type="home"] .home-resource-media img { height:clamp(150px,18vw,205px); object-fit:cover; }
+body[data-page-type="home"] .home-resource-meta { display:block; padding:16px 20px 7px; color:#0755a5; font:600 .69rem/1.4 var(--mono); letter-spacing:.035em; }
+body[data-page-type="home"] .home-resource-link strong { padding:0 20px; color:#102442; font-size:1.08rem; line-height:1.4; }
+body[data-page-type="home"] .home-resource-link > span:not(.home-resource-media):not(.home-resource-meta) { padding:10px 20px 16px; color:#596b80; font-size:.91rem; line-height:1.65; }
+body[data-page-type="home"] .home-resource-link em { align-self:end; padding:0 20px 18px; color:#0755a5; font-size:.9rem; }
+@media (min-width:768px) and (max-width:1199px) {
+  body[data-page-type="home"] .home-resource-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:767px) {
+  body[data-page-type="home"] .home-resources-section { padding-block:42px; }
+  body[data-page-type="home"] .home-resource-grid { grid-template-columns:minmax(0,1fr); gap:16px; }
+  body[data-page-type="home"] .home-resource-media img { height:190px; }
+  body[data-page-type="home"] .home-resources-section .science-field--resources .science-object--tube,
+  body[data-page-type="home"] .home-resources-section .science-field--resources .science-object--flask { display:none; }
+}
+
+/* Carry the subtle scientific atmosphere through the homepage sections. */
+body[data-page-type="home"] .home-products-section,
+body[data-page-type="home"] .home-featured-solution,
+body[data-page-type="home"] .home-editorial-section { background:linear-gradient(135deg,#f3f9ff 0%,#fff 48%,#eff7ff 100%); }
+body[data-page-type="home"] .home-products-section > .science-field,
+body[data-page-type="home"] .home-featured-solution > .science-field,
+body[data-page-type="home"] .home-editorial-section > .science-field { color:rgba(28,110,182,.34); opacity:.42; }
+body[data-page-type="home"] .home-products-section > .science-field::before,
+body[data-page-type="home"] .home-featured-solution > .science-field::before,
+body[data-page-type="home"] .home-editorial-section > .science-field::before { background-image:linear-gradient(rgba(26,111,184,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(26,111,184,.045) 1px,transparent 1px); }
+body[data-page-type="home"] .home-products-section > .science-field::after,
+body[data-page-type="home"] .home-featured-solution > .science-field::after,
+body[data-page-type="home"] .home-editorial-section > .science-field::after { background:radial-gradient(ellipse at 12% 20%,rgba(133,194,239,.19),transparent 33%),radial-gradient(ellipse at 88% 76%,rgba(168,214,247,.18),transparent 34%); animation:science-ambience-drift 24s ease-in-out infinite alternate; }
+body[data-page-type="home"] .home-products-section .science-field--products,
+body[data-page-type="home"] .home-featured-solution .science-field--solutions,
+body[data-page-type="home"] .home-editorial-section .science-field--solutions { color:rgba(23,107,181,.39); }
+body[data-page-type="home"] .home-products-section > .science-field .science-object,
+body[data-page-type="home"] .home-featured-solution > .science-field .science-object,
+body[data-page-type="home"] .home-editorial-section > .science-field .science-object { filter:drop-shadow(0 3px 8px rgba(27,100,163,.1)); }
+body[data-page-type="home"] .home-applications-section > .science-field,
+body[data-page-type="home"] .home-value-section > .science-field { display:block; opacity:.2; color:rgba(28,110,182,.42); }
+body[data-page-type="home"] .home-applications-section > .science-field::before,
+body[data-page-type="home"] .home-value-section > .science-field::before { background-image:linear-gradient(rgba(26,111,184,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,111,184,.04) 1px,transparent 1px); }
+body[data-page-type="home"] .home-applications-section > .science-field .science-object--molecule,
+body[data-page-type="home"] .home-value-section > .science-field .science-object--molecule { animation-duration:36s; }
+body[data-page-type="home"] .home-applications-section > .science-field .science-particle,
+body[data-page-type="home"] .home-value-section > .science-field .science-particle { display:block; background:#4b9bdd; opacity:.32; }
+
+/* Even product tiles avoid the oversized first-row gap in the desktop view. */
+body[data-page-type="home"] .home-product-grid { grid-template-columns:repeat(4,minmax(0,1fr)); align-items:stretch; gap:16px; }
+body[data-page-type="home"] .home-product-card--feature { grid-column:auto; }
+body[data-page-type="home"] .home-product-card--feature .home-product-media { aspect-ratio:4 / 3; }
+body[data-page-type="home"] .home-product-media { background:linear-gradient(145deg,#edf6ff,#fff); }
+body[data-page-type="home"] .home-product-media img { object-fit:contain; padding:14px; }
+body[data-page-type="home"] .home-product-card { height:100%; border-color:#e0ebf6; box-shadow:0 5px 16px rgba(22,78,129,.06); }
+body[data-page-type="home"] .home-product-card--feature { border-color:#b8d5f0; }
+body[data-page-type="home"] .home-product-body { padding:14px 15px 16px; }
+/* Soft animated laboratory halo behind the transparent product pack shots. */
+body[data-page-type="home"] .home-product-media { position:relative; isolation:isolate; overflow:hidden; background:radial-gradient(ellipse at 50% 58%,rgba(112,183,237,.22),transparent 48%),linear-gradient(145deg,#e5f3ff 0%,#f8fcff 52%,#eaf5ff 100%); }
+body[data-page-type="home"] .home-product-media::before { content:""; position:absolute; z-index:0; inset:0; background-image:radial-gradient(rgba(38,119,184,.18) .8px,transparent .8px); background-size:18px 18px; mask-image:radial-gradient(ellipse at center,#000 0%,transparent 73%); opacity:.3; }
+body[data-page-type="home"] .home-product-media::after { content:""; position:absolute; z-index:0; width:58%; aspect-ratio:1; left:21%; top:13%; border:1px solid rgba(65,145,207,.12); border-radius:50%; background:radial-gradient(circle,rgba(255,255,255,.12) 45%,rgba(84,161,219,.07) 70%,transparent 71%); box-shadow:0 0 34px rgba(77,157,218,.12); animation:home-product-glow 13s ease-in-out infinite alternate; }
+body[data-page-type="home"] .home-product-media img { position:relative; z-index:1; }
+body[data-page-type="home"] .home-product-card:hover .home-product-media { background:radial-gradient(ellipse at 50% 58%,rgba(96,176,237,.27),transparent 51%),linear-gradient(145deg,#e0f0ff 0%,#f8fcff 52%,#e6f3ff 100%); }
+@media (min-width:1200px) {
+  body[data-page-type="home"] { --wrap:1440px; --gut:28px; }
+  body[data-page-type="home"] .home-hero-collage { height:376px; }
+  body[data-page-type="home"] .site-header .brand svg { display:none; }
+  body[data-page-type="home"] .site-header .brand::before { content:"A"; display:grid; place-items:center; width:48px; height:52px; color:#0755a5; font:italic 700 3.15rem/.9 var(--sans); transform:skewX(-10deg); }
+  body[data-page-type="home"] .site-header .brand-name { font-size:1.3rem; letter-spacing:.015em; text-transform:uppercase; }
+  body[data-page-type="home"] .site-header .brand-name span { font-size:.64rem; letter-spacing:.27em; }
+}
+
+/* Navy homepage palette requested for the final visual pass. */
+body[data-page-type="home"] { background:#071a35; color:#dbe8f7; }
+body[data-page-type="home"] .home-hero { background:radial-gradient(ellipse at 74% 42%,rgba(29,105,178,.42),transparent 43%),linear-gradient(125deg,#071a35 0%,#0a2850 52%,#081e3c 100%); }
+body[data-page-type="home"] .home-hero .science-field--hero { color:rgba(123,193,246,.5); }
+body[data-page-type="home"] .home-hero .science-field--hero .science-object { filter:drop-shadow(0 3px 10px rgba(83,168,233,.28)); }
+body[data-page-type="home"] .home-hero-copy h1 { color:#f6faff; }
+body[data-page-type="home"] .home-hero-copy h1 span { color:#65baff; }
+body[data-page-type="home"] .home-hero-copy .eyebrow { color:#8dcaff; }
+body[data-page-type="home"] .home-hero-copy .lead { color:#d1e2f5; }
+body[data-page-type="home"] .home-hero-copy .btn--primary { border-color:#1671c3; background:#1268b4; color:#fff; }
+body[data-page-type="home"] .home-hero-copy .btn--secondary { border-color:#9ac9f0; background:rgba(255,255,255,.96); color:#0b4d8e; }
+body[data-page-type="home"] .home-feature-strip { background:#0c2a50; border-color:rgba(151,196,233,.2); }
+body[data-page-type="home"] .home-feature-item { color:#f4f8ff; border-color:rgba(165,202,233,.2); }
+body[data-page-type="home"] .home-feature-item small { color:#c2d5e9; }
+body[data-page-type="home"] .home-feature-item > .icon { background:#173e6b; color:#8bcaff; }
+body[data-page-type="home"] .home-applications-section { background:#071a35; }
+body[data-page-type="home"] .home-applications-section .sec-head h2,
+body[data-page-type="home"] .home-value-section .sec-head h2 { color:#f4f8ff; }
+body[data-page-type="home"] .home-applications-section .sec-head .eyebrow,
+body[data-page-type="home"] .home-value-section .eyebrow { color:#77bdff; }
+body[data-page-type="home"] .home-applications-link { border-color:#5e9ed4; background:rgba(11,43,78,.82); color:#b7ddff; }
+body[data-page-type="home"] .home-applications-section > .science-field { opacity:.25; color:rgba(104,181,238,.45); }
+body[data-page-type="home"] .home-value-section { background:#0c2a50; }
+body[data-page-type="home"] .home-value-item { border-color:rgba(165,202,233,.2); }
+body[data-page-type="home"] .home-value-item h3 { color:#f4f8ff; }
+body[data-page-type="home"] .home-value-item p { color:#c2d5e9; }
+body[data-page-type="home"] .home-value-icon { background:#143b68; color:#8bcaff; }
+body[data-page-type="home"] .home-value-section > .science-field { opacity:.22; color:rgba(104,181,238,.45); }
+body[data-page-type="home"] .home-products-section,
+body[data-page-type="home"] .home-featured-solution,
+body[data-page-type="home"] .home-editorial-section,
+body[data-page-type="home"] .home-resources-section { background-color:#071a35; background-image:radial-gradient(ellipse at 16% 8%,rgba(19,76,132,.48),transparent 38%),radial-gradient(ellipse at 88% 88%,rgba(12,55,98,.54),transparent 42%),linear-gradient(135deg,#071a35 0%,#0a2141 55%,#071a35 100%); }
+body[data-page-type="home"] .home-products-section .sec-head h2,
+body[data-page-type="home"] .home-featured-solution h2,
+body[data-page-type="home"] .home-editorial-section h2,
+body[data-page-type="home"] .home-resources-section .sec-head h2 { color:#f4f8ff; }
+body[data-page-type="home"] .home-products-section .eyebrow,
+body[data-page-type="home"] .home-featured-solution .eyebrow,
+body[data-page-type="home"] .home-editorial-section .eyebrow,
+body[data-page-type="home"] .home-resources-section .sec-head .eyebrow { color:#82c5ff; }
+body[data-page-type="home"] .home-featured-solution p,
+body[data-page-type="home"] .home-editorial-section p { color:#ccdaea; }
+body[data-page-type="home"] .home-solution-list li { color:#d3e1f0; }
+body[data-page-type="home"] .home-resources-section .home-resource-card,
+body[data-page-type="home"] .home-product-card { color:#172033; }
+body[data-page-type="home"] .home-resources-section .arrow-link { border-color:#5487b5; background:#0d2a4d; color:#c7e5ff; }
+body[data-page-type="home"] .home-cta-block .home-final-cta { border-color:#24517d; background:linear-gradient(135deg,#0d2a4d,#102f53); color:#e4eef9; }
+body[data-page-type="home"] .home-final-cta h2 { color:#f5f9ff; }
+body[data-page-type="home"] .home-final-cta p { color:#cad9e9; }
+body[data-page-type="home"] .home-newsletter-section .home-newsletter { border-color:#244a72; background:#0d2a4d; color:#e1ecf8; }
+body[data-page-type="home"] .home-newsletter-section h2 { color:#f5f9ff; }
+body[data-page-type="home"] .home-resources-section .home-resource-meta { color:#0755a5; }
+body[data-page-type="home"] .site-footer { background:#06152b; }
+
+body[data-page-type="home"] .home-collage-photo { border-radius:18px; }
+body[data-page-type="home"] .home-collage-photo img { padding:0; object-fit:cover; filter:none; }
+body[data-page-type="home"] .home-collage-photo--scientist img { object-position:center; transform:none; }
+body[data-page-type="home"] .home-collage-photo--glass img,
+body[data-page-type="home"] .home-collage-photo--vials img,
+body[data-page-type="home"] .home-collage-photo--food img,
+body[data-page-type="home"] .home-collage-photo--dairy img { padding:0; }
+@media (min-width:1200px) {
+  body[data-page-type="home"] .home-hero-collage { grid-template-columns:1.4fr .76fr .76fr; height:376px; gap:12px; }
+}
+@keyframes science-ambience-drift {
+  from { transform:translate3d(-.5%,0,0) scale(1); opacity:.74; }
+  to { transform:translate3d(.5%,-.5%,0) scale(1.025); opacity:1; }
+}
+@keyframes home-product-glow {
+  from { transform:translate3d(-3px,2px,0) scale(.96); opacity:.62; }
+  to { transform:translate3d(4px,-3px,0) scale(1.04); opacity:1; }
+}
+@media (min-width:640px) and (max-width:1023px) {
+  body[data-page-type="home"] .home-product-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media (max-width:639px) {
+  body[data-page-type="home"] .home-product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  body[data-page-type="home"] .home-product-card--feature { grid-column:auto; }
+  body[data-page-type="home"] .home-product-media img { padding:10px; }
+}
+
+/* Final navy color pass: background surfaces only, with contrast colors for legibility. */
+body[data-page-type="home"] { background:#041F45; color:#DCEBFA; }
+body[data-page-type="home"] .site-header { background:#041F45; border-color:rgba(145,194,235,.2); }
+body[data-page-type="home"] .site-header > .util { background:#041F45; border-color:rgba(145,194,235,.16); }
+body[data-page-type="home"] .site-header > .masthead,
+body[data-page-type="home"] .site-header > .catnav { background:#062B5F; }
+body[data-page-type="home"] .site-header .brand-name,
+body[data-page-type="home"] .site-header .brand-name span,
+body[data-page-type="home"] .site-header .catnav a,
+body[data-page-type="home"] .site-header .catnav button,
+body[data-page-type="home"] .site-header .head-actions .icon-btn { color:#FFFFFF; }
+body[data-page-type="home"] .site-header .brand::before { color:#FFFFFF; }
+body[data-page-type="home"] .site-header .catnav [aria-current="page"] { background:#0B5CAD; color:#FFFFFF; }
+body[data-page-type="home"] .home-hero { background:radial-gradient(ellipse at 77% 42%,rgba(22,136,232,.26),transparent 44%),linear-gradient(125deg,#041F45 0%,#062B5F 56%,#041F45 100%); }
+body[data-page-type="home"] .home-feature-strip { background:#0A376F; border-color:rgba(145,194,235,.2); }
+body[data-page-type="home"] .home-applications-section { background:#062B5F; }
+body[data-page-type="home"] .home-industry-card { background:#0A376F; border-color:rgba(93,183,255,.38); box-shadow:0 8px 24px rgba(0,10,28,.24); }
+body[data-page-type="home"] .home-industry-body { background:#0D427F; color:#FFFFFF; }
+body[data-page-type="home"] .home-industry-body h3 { color:#FFFFFF; }
+body[data-page-type="home"] .home-industry-body > .icon { color:#5DB7FF; }
+body[data-page-type="home"] .home-value-section { background:#041F45; }
+body[data-page-type="home"] .home-value-icon { background:#0A376F; border-color:rgba(93,183,255,.25); color:#5DB7FF; }
+body[data-page-type="home"] .home-products-section,
+body[data-page-type="home"] .home-editorial-section,
+body[data-page-type="home"] .home-newsletter-section { background-color:#062B5F; background-image:radial-gradient(ellipse at 16% 8%,rgba(22,136,232,.14),transparent 38%),linear-gradient(135deg,#062B5F 0%,#041F45 100%); }
+body[data-page-type="home"] .home-featured-solution,
+body[data-page-type="home"] .home-resources-section,
+body[data-page-type="home"] .home-cta-block { background-color:#041F45; background-image:radial-gradient(ellipse at 88% 16%,rgba(22,136,232,.12),transparent 38%),linear-gradient(135deg,#041F45 0%,#062B5F 100%); }
+body[data-page-type="home"] .home-final-cta,
+body[data-page-type="home"] .home-newsletter-section .home-newsletter { background:#0A376F; border-color:rgba(93,183,255,.26); }
+body[data-page-type="home"] .site-footer { background:#041F45; border-color:rgba(93,183,255,.24); }
+body[data-page-type="home"] .home-products-section > .science-field,
+body[data-page-type="home"] .home-featured-solution > .science-field,
+body[data-page-type="home"] .home-editorial-section > .science-field,
+body[data-page-type="home"] .home-resources-section > .science-field { color:rgba(93,183,255,.32); }
+body[data-page-type="home"] .home-products-section > .science-field::before,
+body[data-page-type="home"] .home-featured-solution > .science-field::before,
+body[data-page-type="home"] .home-editorial-section > .science-field::before,
+body[data-page-type="home"] .home-resources-section > .science-field::before { background-image:linear-gradient(rgba(93,183,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(93,183,255,.045) 1px,transparent 1px); }
+
+/* Animation-only refinement: preserve all existing surfaces and composition. */
+body[data-page-type="home"] .science-field::after {
+  animation: home-science-light 42s ease-in-out infinite alternate;
+}
+body[data-page-type="home"] .science-object--molecule { animation-name: home-molecule-drift; animation-duration: 34s; }
+body[data-page-type="home"] .science-object--tube { animation-name: home-tube-float; animation-duration: 31s; }
+body[data-page-type="home"] .science-object--vial,
+body[data-page-type="home"] .science-object--flask { animation-name: home-vial-float; animation-duration: 36s; }
+body[data-page-type="home"] .science-object--capsule { animation-name: home-capsule-drift; animation-duration: 32s; }
+body[data-page-type="home"] .science-object--chromatogram { animation-name: home-data-line; animation-duration: 44s; }
+body[data-page-type="home"] .science-object--dna { animation-name: home-dna-drift; animation-duration: 42s; }
+body[data-page-type="home"] .science-object--wave { animation-name: home-wave-flow; animation-duration: 48s; }
+body[data-page-type="home"] .science-particle { animation-name: home-particle-drift; animation-duration: 21s; }
+body[data-page-type="home"] .science-object--molecule circle,
+body[data-page-type="home"] .science-object--dna circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: home-node-pulse 7s ease-in-out infinite;
+}
+body[data-page-type="home"] .science-object--molecule circle:nth-of-type(2n),
+body[data-page-type="home"] .science-object--dna circle:nth-of-type(2n) { animation-delay: -3.5s; }
+
+@keyframes home-science-light {
+  from { transform: translate3d(-.35%, .2%, 0); opacity: .78; }
+  to { transform: translate3d(.35%, -.2%, 0); opacity: 1; }
+}
+@keyframes home-molecule-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-1deg); }
+  50% { transform: translate3d(5px, -7px, 0) rotate(1deg); }
+}
+@keyframes home-tube-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(.5deg); }
+  50% { transform: translate3d(-3px, -7px, 0) rotate(-1deg); }
+}
+@keyframes home-vial-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(.5deg); }
+  50% { transform: translate3d(3px, -5px, 0) rotate(-.5deg); }
+}
+@keyframes home-capsule-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-24deg); }
+  50% { transform: translate3d(6px, -2px, 0) rotate(-22deg); }
+}
+@keyframes home-data-line {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: .3; }
+  50% { transform: translate3d(-3px, -4px, 0); opacity: .44; }
+}
+@keyframes home-dna-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(3px, -5px, 0); }
+}
+@keyframes home-wave-flow {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -3px, 0); }
+}
+@keyframes home-particle-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: .22; }
+  50% { transform: translate3d(2px, -7px, 0); opacity: .48; }
+}
+@keyframes home-node-pulse {
+  0%, 100% { transform: scale(.96); opacity: .86; }
+  50% { transform: scale(1.045); opacity: 1; }
+}
+@media (max-width: 767px) {
+  body[data-page-type="home"] .science-field::after { animation-duration: 60s; }
+  body[data-page-type="home"] .science-object--molecule,
+  body[data-page-type="home"] .science-object--tube,
+  body[data-page-type="home"] .science-object--vial,
+  body[data-page-type="home"] .science-object--flask,
+  body[data-page-type="home"] .science-object--capsule,
+  body[data-page-type="home"] .science-object--chromatogram,
+  body[data-page-type="home"] .science-object--dna,
+  body[data-page-type="home"] .science-object--wave,
+  body[data-page-type="home"] .science-particle { animation-duration: 48s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-page-type="home"] .science-field::after,
+  body[data-page-type="home"] .science-object,
+  body[data-page-type="home"] .science-particle,
+  body[data-page-type="home"] .science-object circle { animation: none !important; }
+}

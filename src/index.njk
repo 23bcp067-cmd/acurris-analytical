@@ -14,45 +14,43 @@ pageType: home
   {% include "partials/science-field.njk" %}
   <div class="wrap home-hero-grid">
     <div class="home-hero-copy">
-      <p class="eyebrow">RELIABLE PRODUCTS FOR ACCURATE RESULTS</p>
-      <h1>Analytical Solutions for a Cleaner, Safer World</h1>
-      <p class="lead">High-quality analytical consumables and reference materials for environmental, food, pharmaceutical and industrial testing.</p>
+      <p class="eyebrow">TRUSTED SOLUTIONS FOR A SAFER TOMORROW</p>
+      <h1>Advanced Analytical Solutions for <span>Safer Food, Feed &amp; Dairy</span></h1>
+      <p class="lead">We provide reliable, innovative and easy-to-use solutions for mycotoxin, allergen, GMO, pesticide and veterinary drug analysis.</p>
       <div class="btn-row">
         <a class="btn btn--primary" href="/products/" data-cta="hero">Explore Products</a>
         <a class="btn btn--secondary" href="/request-quote/">Request a Quote</a>
       </div>
 
-      <div class="home-trust-grid" aria-label="Trust indicators">
-        <div class="home-trust-item">
-          <strong>Trusted Quality</strong>
-          <span>Consistent &amp; reliable results</span>
-        </div>
-        <div class="home-trust-item">
-          <strong>Wide Range</strong>
-          <span>11+ Product Categories</span>
-        </div>
-        <div class="home-trust-item">
-          <strong>Technical Support</strong>
-          <span>Expert guidance</span>
-        </div>
-        <div class="home-trust-item">
-          <strong>Pan-India Supply</strong>
-          <span>Fast &amp; secure delivery</span>
-        </div>
-      </div>
     </div>
 
     <div class="home-hero-feature">
-      <div class="home-hero-media">
-        <img src="/assets/img/products/hero-l.webp" srcset="/assets/img/products/hero-m.webp 800w, /assets/img/products/hero-l.webp 1600w" sizes="(min-width: 1024px) 55vw, 100vw" width="1600" height="1100" alt="Laboratory analytical consumables and sample prep materials" fetchpriority="high">
-      </div>
-      <div class="home-spotlight">
-        <p class="kicker">Featured product</p>
-        <h2>{{ q.name }}</h2>
-        <p>Pre-weighed formulations for fast, reproducible extraction across multi-residue food and environmental methods.</p>
-        <a class="arrow-link" href="/products/quechers/">Learn more {% icon "arrow-right" %}</a>
+      <div class="home-hero-collage" aria-label="Analytical testing and food safety products">
+        <figure class="home-collage-photo home-collage-photo--scientist"><img src="/assets/img/hero/scientist.webp" width="774" height="756" alt="Scientist examining a sample through a laboratory microscope" fetchpriority="high"></figure>
+        <figure class="home-collage-photo home-collage-photo--glass"><img src="/assets/img/hero/pipette-glassware.webp" width="392" height="323" alt="Pipette above laboratory glassware" loading="lazy"></figure>
+        <figure class="home-collage-photo home-collage-photo--vials"><img src="/assets/img/hero/sample-vials.webp" width="441" height="323" alt="Blue-capped laboratory sample vials" loading="lazy"></figure>
+        <figure class="home-collage-photo home-collage-photo--food"><img src="/assets/img/hero/food-testing.webp" width="424" height="354" alt="Food sample being tested in a laboratory" loading="lazy"></figure>
+        <figure class="home-collage-photo home-collage-photo--dairy"><img src="/assets/img/hero/dairy-feed.webp" width="409" height="354" alt="Dairy products and grain samples for food safety testing" loading="lazy"></figure>
+        <a class="home-collage-callout home-collage-callout--top" href="/solutions/food-testing-labs/">
+          <span class="home-collage-callout-icon">{% icon "flask-conical" %}</span>
+          <span><strong>Innovative Solutions</strong><small>For Food, Feed &amp; Dairy Safety</small></span>
+        </a>
+        <a class="home-collage-callout home-collage-callout--bottom" href="/products/quechers/">
+          <span class="home-collage-callout-icon">{% icon "shield-check" %}</span>
+          <span><strong>Reliable Results</strong><small>For a Safer Tomorrow</small></span>
+        </a>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="home-feature-strip" aria-label="Acurris service highlights">
+  <div class="wrap home-feature-strip-grid">
+    <div class="home-feature-item">{% icon "microscope" %}<span><strong>Mycotoxin Analysis</strong><small>Reliable &amp; Sensitive</small></span></div>
+    <div class="home-feature-item">{% icon "shield-check" %}<span><strong>Allergen Detection</strong><small>Safe Food for All</small></span></div>
+    <div class="home-feature-item">{% icon "dna" %}<span><strong>GMO Testing</strong><small>Accurate &amp; Efficient</small></span></div>
+    <div class="home-feature-item">{% icon "sprout" %}<span><strong>Pesticide Residues</strong><small>Ensure Food Safety</small></span></div>
+    <div class="home-feature-item">{% icon "syringe" %}<span><strong>Veterinary Drug Analysis</strong><small>Compliance &amp; Quality</small></span></div>
   </div>
 </section>
 
@@ -112,51 +110,36 @@ pageType: home
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <p class="eyebrow">Solutions</p>
-        <h2 id="applications-title">Solutions for Real-World Challenges</h2>
+        <p class="eyebrow">OUR SOLUTIONS</p>
+        <h2 id="applications-title">Browse by Application</h2>
       </div>
+      <a class="home-applications-link" href="/solutions/">View All Applications {% icon "arrow-right" %}</a>
     </div>
-    <p class="home-section-copy">Reliable analytical products across diverse industries, helping maintain quality, compliance and safety.</p>
 
     <div class="home-industry-grid">
       <article class="home-industry-card">
-        <img src="/assets/img/products/cat-quechers-m.webp" width="700" height="520" alt="Food testing lab sample preparation" loading="lazy">
-        <div class="home-industry-body">
-          <p class="kicker">Food testing labs</p>
-          <h3>Food testing labs</h3>
-          <p>Matched products for method-driven contaminant and residue analysis.</p>
-          <a href="/solutions/food-testing-labs/">Explore {% icon "arrow-right" %}</a>
-        </div>
+        <img src="/assets/img/applications/dairy-testing.jpg" width="140" height="60" alt="Milk, cheese and dairy products" loading="lazy">
+        <a class="home-industry-body" href="/solutions/dairy/"><h3>Dairy Testing</h3>{% icon "arrow-right" %}<span class="visually-hidden">Explore dairy testing</span></a>
       </article>
-
       <article class="home-industry-card">
-        <img src="/assets/img/products/cat-antibiotic-residues-m.webp" width="700" height="520" alt="Dairy processor analytical testing" loading="lazy">
-        <div class="home-industry-body">
-          <p class="kicker">Dairy processors</p>
-          <h3>Dairy processors</h3>
-          <p>Fast screening for residues, adulterants and collection-point quality checks.</p>
-          <a href="/solutions/dairy/">Explore {% icon "arrow-right" %}</a>
-        </div>
+        <img src="/assets/img/applications/food-testing.jpg" width="139" height="60" alt="Fresh fruits and vegetables" loading="lazy">
+        <a class="home-industry-body" href="/solutions/food-testing-labs/"><h3>Food Testing</h3>{% icon "arrow-right" %}<span class="visually-hidden">Explore food testing</span></a>
       </article>
-
       <article class="home-industry-card">
-        <img src="/assets/img/products/cat-mycotoxins-m.webp" width="700" height="520" alt="Feed and poultry testing products" loading="lazy">
-        <div class="home-industry-body">
-          <p class="kicker">Feed and poultry</p>
-          <h3>Feed and poultry</h3>
-          <p>Routine screening and contamination control from intake to finished feed.</p>
-          <a href="/solutions/feed-and-poultry/">Explore {% icon "arrow-right" %}</a>
-        </div>
+        <img src="/assets/img/applications/feed-testing.jpg" width="139" height="60" alt="Grain and animal feed" loading="lazy">
+        <a class="home-industry-body" href="/solutions/feed-and-poultry/"><h3>Feed Testing</h3>{% icon "arrow-right" %}<span class="visually-hidden">Explore feed testing</span></a>
       </article>
-
       <article class="home-industry-card">
-        <img src="/assets/img/products/cat-filtration-m.webp" width="700" height="520" alt="Industrial analytical filtration" loading="lazy">
-        <div class="home-industry-body">
-          <p class="kicker">Industrial &amp; chemical</p>
-          <h3>Industrial &amp; chemical</h3>
-          <p>Robust consumables and filtration support for analytical workflows.</p>
-          <a href="/products/filtration/">Explore {% icon "arrow-right" %}</a>
-        </div>
+        <img src="/assets/img/applications/meat-poultry.jpg" width="139" height="60" alt="Fresh meat and poultry" loading="lazy">
+        <a class="home-industry-body" href="/solutions/feed-and-poultry/"><h3>Meat &amp; Poultry</h3>{% icon "arrow-right" %}<span class="visually-hidden">Explore meat and poultry testing</span></a>
+      </article>
+      <article class="home-industry-card">
+        <img src="/assets/img/applications/nutraceuticals.jpg" width="139" height="60" alt="Nutraceutical oil capsules" loading="lazy">
+        <a class="home-industry-body" href="/products/spe/"><h3>Nutraceuticals</h3>{% icon "arrow-right" %}<span class="visually-hidden">Explore nutraceutical testing products</span></a>
+      </article>
+      <article class="home-industry-card">
+        <img src="/assets/img/applications/pharmaceuticals.jpg" width="139" height="60" alt="Pharmaceutical tablets and capsules" loading="lazy">
+        <a class="home-industry-body" href="/products/filtration/"><h3>Pharmaceuticals</h3>{% icon "arrow-right" %}<span class="visually-hidden">Explore pharmaceutical testing products</span></a>
       </article>
     </div>
   </div>
@@ -168,41 +151,31 @@ pageType: home
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <p class="eyebrow">Why Acurris</p>
-        <h2 id="why-title">Your Partner in Analytical Excellence</h2>
+        <p class="eyebrow">OUR ADVANTAGES</p>
+        <h2 id="why-title">Why Choose Acurris Analytical</h2>
       </div>
     </div>
 
     <div class="home-value-grid">
       <div class="home-value-item">
-        <div class="home-value-icon">01</div>
-        <h3>Trusted Quality</h3>
-        <p>Reliable product selection and practical support for analytical teams.</p>
+        <div class="home-value-icon">{% icon "gem" %}</div>
+        <h3>High-Quality Products</h3>
+        <p>Trusted Global Brands</p>
       </div>
       <div class="home-value-item">
-        <div class="home-value-icon">02</div>
-        <h3>Wide Product Range</h3>
-        <p>From rapid kits to extraction and cleanup consumables in one workflow.</p>
-      </div>
-      <div class="home-value-item">
-        <div class="home-value-icon">03</div>
+        <div class="home-value-icon">{% icon "settings" %}</div>
         <h3>Technical Support</h3>
-        <p>Guidance on method fit, matrix suitability and product matching.</p>
+        <p>Expert Guidance</p>
       </div>
       <div class="home-value-item">
-        <div class="home-value-icon">04</div>
-        <h3>Application Support</h3>
-        <p>Advice across food, dairy, feed, pharmaceutical and industrial applications.</p>
+        <div class="home-value-icon">{% icon "users-round" %}</div>
+        <h3>Application Expertise</h3>
+        <p>Across Multiple Industries</p>
       </div>
       <div class="home-value-item">
-        <div class="home-value-icon">05</div>
-        <h3>Responsive Service</h3>
-        <p>Fast technical replies and practical support for your testing workflow.</p>
-      </div>
-      <div class="home-value-item">
-        <div class="home-value-icon">06</div>
-        <h3>Pan-India Supply</h3>
-        <p>Delivery and support focused on the operational realities of Indian labs.</p>
+        <div class="home-value-icon">{% icon "globe-2" %}</div>
+        <h3>Global Reach</h3>
+        <p>Serving a Safer World</p>
       </div>
     </div>
   </div>
@@ -244,7 +217,7 @@ pageType: home
             <span class="home-resource-media">
               <img src="/assets/img/products/{{ relatedCat.img }}-m.webp" width="720" height="540" alt="{{ relatedCat.name }} product category" loading="lazy">
             </span>
-            <span class="home-resource-meta">{{ relatedCat.name }} &middot; {{ a.data.date }}</span>
+            <span class="home-resource-meta">{{ relatedCat.name }} &middot; {{ a.data.date | readableDate }}</span>
             <strong>{{ a.data.title }}</strong>
             <span>{{ a.data.description }}</span>
             <em>Read Article {% icon "arrow-right" %}</em>

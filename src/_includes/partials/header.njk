@@ -13,6 +13,13 @@
         <li>{% icon "mail" %}<a href="mailto:{{ site.email }}" data-track="email_click">{{ site.email }}</a></li>
         {%- if site.phone %}<li>{% icon "phone" %}<a href="tel:{{ site.phone }}" data-track="call_click">{{ site.phoneDisplay or site.phone }}</a></li>{% endif %}
       </ul>
+      <ul class="home-utility-links">
+        <li><a href="/about/">About Us</a></li>
+        <li><a href="/resources/">Resources</a></li>
+        <li><a href="/resources/">News</a></li>
+        <li><a href="mailto:{{ site.email }}">Contact</a></li>
+        <li><a href="/search/" aria-label="Search">{% icon "search" %}</a></li>
+      </ul>
     </div>
   </div>
 
